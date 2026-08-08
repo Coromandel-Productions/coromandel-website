@@ -1,16 +1,24 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import About from "@/components/About";
-import GlobalMap from "@/components/GlobalMap";
-import Clients from "@/components/Clients";
 import Process from "@/components/Process";
 import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import TrustBar from "@/components/TrustBar";
+
+const GlobalMap = dynamic(() => import("@/components/GlobalMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="py-40 bg-[#080808] relative overflow-hidden flex items-center justify-center min-h-[600px] border border-white/5 rounded-[3rem]">
+      <div className="text-primary text-xs uppercase tracking-widest animate-pulse">Loading Map Infrastructure...</div>
+    </div>
+  ),
+});
 
 export default function Home() {
   return (
@@ -22,7 +30,6 @@ export default function Home() {
         <Services />
         <About />
         <GlobalMap />
-        <Clients />
         <Process />
         <Pricing />
         <Contact />

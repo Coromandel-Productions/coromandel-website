@@ -43,7 +43,7 @@ export default function Hero() {
             playsInline
             className="w-full h-full object-cover saturate-[0.8] contrast-[1.1]"
           >
-            <source src="/videos/coromandel-showreel-cut.mp4" type="video/mp4" />
+            <source src="/Coromandel%20x%20Lune/04_Showreels/showreel_final.mp4" type="video/mp4" />
           </video>
           
           {/* Dynamic Darkening Overlay */}

@@ -1,20 +1,19 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import Image from "next/image";
 
 const partners = [
-  { name: "ICC", type: "text", color: "#0055A4" },
-  { name: "Infosys", type: "text", color: "#007CC3" },
-  { name: "Food from the Heart", type: "text", color: "#E31B23" },
-  { name: "BVB 09", type: "text", color: "#FDE100" },
-  { name: "World Bank Group", type: "text", color: "#0072BC" },
+  { name: "ICC", logo: "/client logos/icc-logo.png" },
+  { name: "World Bank", logo: "/client logos/World_Bank-Logo.png" },
+  { name: "Infosys", logo: "/client logos/infosys-logo.jpg" },
+  { name: "Borussia Dortmund", logo: "/client logos/Borussia_Dortmund_logo.png" },
 ];
 
 export default function TrustBar() {
   return (
     <section className="py-20 bg-background border-y border-border overflow-hidden transition-colors duration-500">
-      <div className="container mx-auto px-6 mb-12">
+      <div className="container mx-auto px-6 mb-16">
         <div className="flex items-center gap-4 justify-center">
           <div className="h-[1px] w-12 bg-primary/30" />
           <span className="text-[10px] uppercase tracking-[0.5em] text-muted font-bold text-center">
@@ -24,24 +23,40 @@ export default function TrustBar() {
         </div>
       </div>
 
-      <div className="relative flex overflow-x-hidden group">
-        <div className="animate-marquee flex whitespace-nowrap items-center hover:pause-animation">
-          {[...partners, ...partners, ...partners].map((partner, i) => (
+      <div className="relative flex group">
+        <div className="animate-marquee flex whitespace-nowrap items-center hover:pause-animation group/track">
+          {/* Duplicate the array a few times to ensure seamless infinite scroll */}
+          {[...partners, ...partners, ...partners, ...partners, ...partners].map((partner, i) => (
             <div 
               key={i} 
-              className="mx-12 lg:mx-20 flex items-center gap-4 cursor-pointer"
+              className="mx-12 lg:mx-20 flex items-center justify-center cursor-pointer min-w-[120px] group/logo relative"
             >
-              <div className="font-serif text-3xl lg:text-5xl text-foreground/20 hover:text-primary transition-all duration-700 hover:scale-110 tracking-tighter filter grayscale group-hover:grayscale-0">
-                {partner.name}
+              {/* Tooltip */}
+              <div className="absolute -top-14 left-1/2 -translate-x-1/2 opacity-0 translate-y-4 scale-95 group-hover/logo:opacity-100 group-hover/logo:translate-y-0 group-hover/logo:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none z-50">
+                <div className="px-4 py-2 bg-black/60 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+                  <span className="text-white text-[10px] font-bold whitespace-nowrap tracking-widest uppercase">
+                    {partner.name}
+                  </span>
+                </div>
               </div>
-              <div className="w-1.5 h-1.5 rounded-full bg-primary/20" />
+
+              {/* Logo */}
+              <div className="relative w-32 h-16 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-110">
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  fill
+                  sizes="(max-width: 768px) 120px, 120px"
+                  className="object-contain transition-all duration-500 opacity-70 group-hover/track:opacity-20 group-hover/logo:!opacity-100"
+                />
+              </div>
             </div>
           ))}
         </div>
 
         {/* Gradient Fades */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+        <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
       </div>
 
       <style jsx>{`
@@ -50,7 +65,7 @@ export default function TrustBar() {
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 40s linear infinite;
+          animation: marquee 60s linear infinite;
         }
         .hover\:pause-animation:hover {
           animation-play-state: paused;
