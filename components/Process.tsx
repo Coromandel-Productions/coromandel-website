@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const steps = [
   {
@@ -36,58 +36,113 @@ const steps = [
   },
 ];
 
-export default function Process() {
+const StepItem = ({ step, index, scrollYProgress }: { step: any, index: number, scrollYProgress: any }) => {
+  const isEven = index % 2 === 0;
+  const target = index / (steps.length - 1 || 1);
+  const stepStart = Math.max(0, target - 0.15);
+  
+  const dotScale = useTransform(scrollYProgress, [stepStart, target], [0.8, 1.5]);
+  const dotOpacity = useTransform(scrollYProgress, [stepStart, target], [0.2, 1]);
+  const dotColor = useTransform(scrollYProgress, [stepStart, target], ["rgba(255,255,255,0.1)", "rgba(241,111,36,1)"]); 
+  const dotShadow = useTransform(
+    scrollYProgress, 
+    [stepStart, target], 
+    ["0px 0px 0px rgba(241,111,36,0)", "0px 0px 20px rgba(241,111,36,0.8)"]
+  );
+  
+  const textOpacity = useTransform(scrollYProgress, [stepStart, target], [0.2, 1]);
+  const yOffset = useTransform(scrollYProgress, [stepStart, target], [20, 0]);
+  const blur = useTransform(scrollYProgress, [stepStart, target], ["blur(4px)", "blur(0px)"]);
+
   return (
-    <section id="process" className="py-24 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="max-w-2xl mb-20 text-center mx-auto">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-[1px] bg-primary" />
-            <span className="text-primary uppercase tracking-[0.3em] text-[10px] font-bold">
+    <div className={`relative py-12 md:py-24 flex w-full group justify-start ${isEven ? "md:justify-start md:text-right" : "md:justify-end md:text-left"}`}>
+      {/* Interactive Node / Dot */}
+      <motion.div
+        style={{
+          scale: dotScale,
+          backgroundColor: dotColor,
+          opacity: dotOpacity,
+          boxShadow: dotShadow
+        }}
+        className="absolute left-0 md:left-1/2 top-1/2 -translate-y-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full border-2 border-background z-10"
+      />
+      
+      {/* Massive Faded Background Number */}
+      <motion.div
+        style={{ opacity: textOpacity, y: yOffset }}
+        className={`absolute top-0 md:top-1/2 md:-translate-y-1/2 right-4 md:right-auto ${isEven ? "md:right-12 lg:right-24" : "md:left-12 lg:left-24"} text-[6rem] md:text-[14rem] font-serif font-bold text-foreground/[0.03] select-none pointer-events-none leading-none tracking-tighter`}
+      >
+        {step.num}
+      </motion.div>
+
+      {/* Actual Content block */}
+      <motion.div 
+        style={{ opacity: textOpacity, y: yOffset, filter: blur }} 
+        className={`relative z-10 w-full pl-8 md:pl-0 md:w-1/2 ${isEven ? "md:pr-8 lg:pr-24" : "md:pl-8 lg:pl-24"}`}
+      >
+        <h3 className={`text-2xl md:text-5xl font-bold uppercase tracking-widest text-foreground mb-3 md:mb-6 flex justify-start items-center ${isEven ? "md:justify-end" : "md:justify-start"}`}>
+          <span className={`text-primary mr-4 md:mr-6 font-serif italic opacity-80 ${isEven ? "md:hidden" : "md:block"}`}>{step.num}</span>
+          {step.title}
+          <span className={`text-primary ml-4 md:ml-6 font-serif italic opacity-80 hidden ${isEven ? "md:block" : "md:hidden"}`}>{step.num}</span>
+        </h3>
+        <p className={`text-muted text-lg md:text-2xl leading-relaxed font-light text-left max-w-xl ${isEven ? "md:text-right md:ml-auto" : "md:text-left md:mr-auto"}`}>
+          {step.description}
+        </p>
+      </motion.div>
+    </div>
+  );
+};
+
+export default function Process() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 60%", "end 70%"]
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+
+  return (
+    <section id="process" className="py-32 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-4xl mb-16 md:mb-32 mx-auto text-center">
+          <div className="flex items-center justify-center gap-3 mb-6 md:mb-8">
+            <div className="w-8 md:w-12 h-[1px] bg-primary" />
+            <span className="text-primary uppercase tracking-[0.4em] text-[10px] font-bold">
               The Journey
             </span>
-            <div className="w-12 h-[1px] bg-primary" />
+            <div className="w-8 md:w-12 h-[1px] bg-primary" />
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-            Roadmap to <br />
-            <span className="italic text-primary">Delivery.</span>
+          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground tracking-tighter leading-[0.85]">
+            ROADMAP TO <br />
+            <span className="italic text-primary">DELIVERY.</span>
           </h2>
-          <p className="text-muted leading-relaxed">
-            Professional filmmaking is a structured art. We've refined our process 
-            over 10+ years to ensure quality, transparency, and impact.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 relative">
-          {/* Decorative line for desktop */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-[1px] bg-white/5 -z-10" />
+        <div ref={containerRef} className="relative max-w-5xl mx-auto pl-4 md:pl-0">
+          {/* Faint Background Track */}
+          <div className="absolute left-[4px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/[0.05] md:-translate-x-1/2" />
           
+          {/* Glowing Progress Track */}
+          <motion.div 
+            style={{ height: lineHeight }}
+            className="absolute left-[4px] md:left-1/2 top-0 w-[2px] bg-primary shadow-[0_0_20px_rgba(241,111,36,0.8)] origin-top md:-translate-x-1/2"
+          />
+
           {steps.map((step, index) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="flex flex-col group"
-            >
-              <div className="flex items-end gap-4 mb-6">
-                <span className="text-6xl font-serif font-light text-primary/10 group-hover:text-primary/30 transition-colors duration-500 leading-none">
-                  {step.num}
-                </span>
-                <h3 className="text-xl font-bold uppercase tracking-widest text-foreground group-hover:text-primary transition-colors mb-2">
-                  {step.title}
-                </h3>
-              </div>
-              <div className="pl-0 md:pl-2">
-                <p className="text-muted text-sm leading-relaxed group-hover:text-foreground transition-colors duration-500">
-                  {step.description}
-                </p>
-              </div>
-              
-              {/* Connector dot for decoration */}
-              <div className="hidden lg:block absolute top-1/2 left-0 w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" style={{ left: `${(index) * 33.3 + 16.6}%` }} />
-            </motion.div>
+            <StepItem 
+              key={step.num} 
+              step={step} 
+              index={index} 
+              scrollYProgress={scrollYProgress} 
+            />
           ))}
         </div>
       </div>

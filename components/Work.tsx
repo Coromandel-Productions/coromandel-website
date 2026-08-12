@@ -146,7 +146,7 @@ export default function Work() {
             className="group relative flex items-center gap-8 px-16 py-8 bg-surface-2 border border-white/10 rounded-full hover:border-primary transition-all duration-500 overflow-hidden"
           >
              <div className="absolute inset-0 bg-primary translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-             <span className="relative z-10 text-xs uppercase tracking-[0.4em] text-white group-hover:text-background font-black">Explore Full Archives</span>
+             <span className="relative z-10 text-xs uppercase tracking-[0.4em] text-foreground group-hover:text-background font-black">Explore Full Archives</span>
              <ExternalLink size={18} className="relative z-10 group-hover:text-background transition-colors" />
           </a>
         </motion.div>

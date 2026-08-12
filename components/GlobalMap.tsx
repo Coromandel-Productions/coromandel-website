@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ComposableMap, Geographies, Geography, Marker, Line } from "react-simple-maps";
 import { MapPin } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -74,6 +75,19 @@ const connections = locations
 
 export default function GlobalMap() {
   const [activeLocation, setActiveLocation] = useState<Location | null>(null);
+  const { theme } = useTheme();
+
+  const isDark = theme === "dark";
+  const mapFill = isDark ? "rgba(241,111,36,0.25)" : "rgba(241,111,36,0.35)";
+  const mapHoverFill = isDark ? "rgba(241,111,36,0.4)" : "rgba(241,111,36,0.5)";
+  const mapStroke = isDark ? "rgba(241,111,36,0.5)" : "rgba(241,111,36,0.6)";
+  const dotColor = isDark ? "#ffffff" : "#000000";
+  const pulseColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)";
+  const inactiveDotColor = isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)";
+  const containerBg = isDark ? "bg-[#080808]" : "bg-white";
+  const tooltipBg = "bg-surface-2/90";
+  const tooltipText = "text-foreground";
+  const tooltipSubText = "text-muted";
 
   return (
     <section id="global" className="py-40 bg-background relative overflow-hidden">
@@ -96,18 +110,17 @@ export default function GlobalMap() {
               <span className="italic text-primary">STUDIO.</span>
             </h2>
           </div>
-          <p className="text-muted text-xl leading-relaxed max-w-sm font-light">
+          <p className="text-muted text-lg md:text-xl leading-relaxed max-w-sm font-light text-center lg:text-left">
             Five continents. One cinematic vision. We produce wherever the story demands.
           </p>
         </div>
 
-        <div className="relative w-full rounded-[3rem] overflow-hidden border border-white/5 bg-[#080808] shadow-[0_0_120px_rgba(0,0,0,0.8)]">
+        <div className={`relative w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/5 ${containerBg} shadow-[0_0_80px_rgba(0,0,0,0.5)] md:shadow-[0_0_120px_rgba(0,0,0,0.8)]`}>
           {/* Map */}
           <ComposableMap
             projection="geoMercator"
             projectionConfig={{ scale: 160, center: [30, 10] }}
-            className="w-full"
-            style={{ height: "600px" }}
+            className="w-full h-[300px] sm:h-[400px] md:h-[600px]"
           >
             <Geographies geography={GEO_URL}>
               {({ geographies }) =>
@@ -115,12 +128,12 @@ export default function GlobalMap() {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill="#111111"
-                    stroke="#1a1a1a"
-                    strokeWidth={0.5}
+                    fill={mapFill}
+                    stroke={mapStroke}
+                    strokeWidth={1}
                     style={{
-                      default: { outline: "none" },
-                      hover: { fill: "#1a1a1a", outline: "none" },
+                      default: { outline: "none", transition: "all 0.3s" },
+                      hover: { fill: mapHoverFill, outline: "none", transition: "all 0.3s" },
                       pressed: { outline: "none" },
                     }}
                   />
@@ -134,7 +147,7 @@ export default function GlobalMap() {
                 key={i}
                 from={conn.from}
                 to={conn.to}
-                stroke="rgba(241,111,36,0.2)"
+                stroke={isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)"}
                 strokeWidth={1}
                 strokeLinecap="round"
                 strokeDasharray="4 4"
@@ -160,16 +173,16 @@ export default function GlobalMap() {
                     <motion.circle
                       r={14}
                       fill="transparent"
-                      stroke="rgba(241,111,36,0.4)"
-                      strokeWidth={1}
+                      stroke={pulseColor}
+                      strokeWidth={1.5}
                       animate={{ r: [10, 18, 10], opacity: [0.6, 0, 0.6] }}
                       transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                     />
                   )}
                   <circle
                     r={loc.isHQ ? 6 : 4}
-                    fill={activeLocation?.id === loc.id ? "#f16f24" : loc.isHQ ? "#f16f24" : "#5a4a3a"}
-                    stroke={loc.isHQ ? "#f16f24" : "#3a2a1a"}
+                    fill={activeLocation?.id === loc.id ? "#f16f24" : loc.isHQ ? dotColor : inactiveDotColor}
+                    stroke={loc.isHQ ? dotColor : inactiveDotColor}
                     strokeWidth={1.5}
                   />
                   {/* Label */}
@@ -180,7 +193,7 @@ export default function GlobalMap() {
                       fontSize: "7px",
                       fontFamily: "sans-serif",
                       fontWeight: "700",
-                      fill: activeLocation?.id === loc.id ? "#f16f24" : "#666",
+                      fill: activeLocation?.id === loc.id ? "#f16f24" : dotColor,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
                     }}
@@ -201,27 +214,27 @@ export default function GlobalMap() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="absolute bottom-8 left-8 bg-black/90 backdrop-blur-xl border border-primary/20 rounded-2xl p-6 max-w-xs"
+                className={`absolute bottom-4 left-4 md:bottom-8 md:left-8 ${tooltipBg} backdrop-blur-xl border border-primary/20 rounded-xl md:rounded-2xl p-4 md:p-6 max-w-[calc(100vw-32px)] sm:max-w-xs`}
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-[9px] uppercase tracking-[0.4em] text-primary font-black">{activeLocation.role}</span>
+                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary" />
+                  <span className="text-[8px] md:text-[9px] uppercase tracking-[0.4em] text-primary font-black">{activeLocation.role}</span>
                 </div>
-                <p className="font-serif text-2xl text-white mb-2">{activeLocation.name}, {activeLocation.country}</p>
-                <p className="text-white/50 text-xs leading-relaxed">{activeLocation.detail}</p>
+                <p className={`font-serif text-xl md:text-2xl ${tooltipText} mb-1 md:mb-2`}>{activeLocation.name}, {activeLocation.country}</p>
+                <p className={`text-[10px] md:text-xs leading-relaxed ${tooltipSubText}`}>{activeLocation.detail}</p>
               </motion.div>
             )}
           </AnimatePresence>
 
           {/* Legend */}
-          <div className="absolute top-6 right-6 flex flex-col gap-3">
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-primary" />
-              <span className="text-[8px] uppercase tracking-widest text-white/40">Studio Hubs</span>
+          <div className="absolute top-4 right-4 md:top-6 md:right-6 flex flex-col gap-2 md:gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-2 h-2 md:w-3 md:h-3 rounded-full" style={{ backgroundColor: dotColor }} />
+              <span className={`text-[7px] md:text-[8px] uppercase tracking-widest ${isDark ? "text-white/40" : "text-black/40"}`}>Studio Hubs</span>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-[#5a4a3a]" />
-              <span className="text-[8px] uppercase tracking-widest text-white/40">Production Locations</span>
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full" style={{ backgroundColor: inactiveDotColor }} />
+              <span className={`text-[7px] md:text-[8px] uppercase tracking-widest ${isDark ? "text-white/40" : "text-black/40"}`}>Production Locations</span>
             </div>
           </div>
         </div>

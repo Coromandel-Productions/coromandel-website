@@ -53,6 +53,7 @@ export const metadata: Metadata = {
 
 
 import { ThemeProvider } from "@/components/ThemeProvider";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -66,7 +67,7 @@ export default function RootLayout({
     >
       <body className={`${jost.className} min-h-full flex flex-col bg-background text-foreground transition-colors duration-500`}>
         <ThemeProvider>
-          {children}
+          <SmoothScroll>{children}</SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

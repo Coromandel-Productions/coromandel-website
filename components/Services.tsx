@@ -57,12 +57,12 @@ export default function Services() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
 
   return (
-    <section ref={targetRef} id="services" className="relative h-[400vh] bg-background">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        {/* Horizontal Moving Content */}
-        <motion.div style={{ x }} className="flex gap-12 px-12 md:px-24 items-center">
+    <section ref={targetRef} id="services" className="relative h-auto md:h-[400vh] bg-background">
+      <div className="md:sticky md:top-0 flex md:h-screen md:items-center overflow-hidden">
+        {/* Moving Content - horizontal on desktop, vertical on mobile */}
+        <motion.div style={{ x }} className="flex flex-col md:flex-row gap-12 md:gap-24 px-6 md:px-24 items-center max-md:!transform-none max-md:w-full py-24 md:py-0">
           {/* Section Introduction Card */}
-          <div className="flex flex-col justify-center min-w-[70vw] md:min-w-[40vw] mr-24">
+          <div className="flex flex-col justify-center w-full md:min-w-[40vw] md:mr-12">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -80,12 +80,13 @@ export default function Services() {
               From action-packed sports to intimate impact stories.
             </p>
 
-            {/* Scroll Navigation Cue */}
+            {/* Scroll Navigation Cue - Hidden on Mobile since it's a vertical scroll */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              className="flex items-center gap-4 mt-4"
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1 }}
+              className="hidden md:flex items-center gap-4 mt-4"
             >
               <span className="text-[9px] uppercase tracking-[0.5em] text-muted font-bold">Scroll to Explore</span>
               <div className="flex gap-1">
@@ -138,7 +139,7 @@ export default function Services() {
           ))}
 
           {/* Final CTA Card */}
-          <div className="min-w-[80vw] h-[70vh] bg-primary/90 flex flex-col items-center justify-center p-12 md:p-24 rounded-[3rem] shadow-2xl relative overflow-hidden group">
+          <div className="w-full md:min-w-[80vw] h-[60vh] md:h-[70vh] bg-primary/90 flex flex-col items-center justify-center p-8 md:p-24 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden group">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.1),transparent)] group-hover:scale-150 transition-transform duration-1000" />
             <h3 className="font-serif text-6xl md:text-[8rem] text-background tracking-tighter leading-none text-center relative z-10 mb-12">
               HAVE A DIFFERENT <br /> <span className="italic">VISION?</span>
@@ -146,14 +147,14 @@ export default function Services() {
             <p className="text-xl md:text-2xl text-background/80 max-w-xl text-center font-medium relative z-10 mb-12">
               We handle bespoke productions for agencies and brands worldwide.
             </p>
-            <a href="#contact" className="relative z-10 px-16 py-8 bg-background text-primary rounded-full text-sm font-black uppercase tracking-[0.3em] hover:scale-105 active:scale-95 transition-all shadow-2xl">
+            <a href="#contact" className="relative z-10 px-10 md:px-16 py-6 md:py-8 bg-background text-primary rounded-full text-[10px] md:text-sm font-black uppercase tracking-[0.3em] hover:scale-105 active:scale-95 transition-all shadow-2xl">
               Discuss Project
             </a>
           </div>
         </motion.div>
 
-        {/* Progress Indicator + Panel Counter */}
-        <div className="absolute bottom-12 left-24 right-24 flex items-center gap-6">
+        {/* Progress Indicator + Panel Counter (Desktop Only) */}
+        <div className="hidden md:flex absolute bottom-12 left-24 right-24 items-center gap-6">
           <div className="relative flex-1 h-px bg-white/10 overflow-hidden">
             <motion.div
               style={{ scaleX: scrollYProgress }}
@@ -183,7 +184,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => router.push(service.href)}
-      className="relative min-w-[80vw] h-[70vh] bg-surface-2 rounded-[3rem] border border-white/5 overflow-hidden group cursor-pointer flex flex-col md:flex-row shadow-2xl"
+      className="relative w-full md:min-w-[80vw] h-[60vh] md:h-[70vh] bg-surface-2 rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden group cursor-pointer flex flex-col md:flex-row shadow-2xl"
     >
       {/* Background Image Parallax */}
       <div className="absolute inset-0 z-0">
@@ -195,14 +196,14 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
             scale: isHovered ? 1.05 : 1,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
       </div>
 
-      <div className="relative z-10 flex flex-col justify-end p-12 md:p-20 w-full md:w-1/2">
-        <span className="text-[10px] uppercase tracking-[0.5em] text-primary mb-6 block font-bold">
+      <div className="relative z-10 flex flex-col justify-end p-8 md:p-20 w-full md:w-1/2 h-full md:h-auto">
+        <span className="text-[10px] uppercase tracking-[0.5em] text-primary mb-4 md:mb-6 block font-bold">
           {service.category}
         </span>
-        <h3 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white group-hover:text-accent transition-all duration-700 tracking-tighter mb-8 leading-tight">
+        <h3 className="font-serif text-4xl md:text-7xl lg:text-8xl text-foreground group-hover:text-accent transition-all duration-700 tracking-tighter mb-4 md:mb-8 leading-tight">
           {service.title}
         </h3>
         <p className="text-lg md:text-xl text-muted group-hover:text-foreground transition-colors duration-700 leading-relaxed font-light mb-8">
@@ -214,13 +215,13 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
         </div>
       </div>
 
-      <div className="relative z-10 flex items-center justify-center p-12 md:p-20 md:w-1/2">
-        <div className="relative w-32 h-32 lg:w-48 lg:h-48 flex items-center justify-center">
-          <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-1000" />
-          <service.icon className="w-16 h-16 lg:w-24 lg:h-24 text-accent group-hover:text-primary transition-all duration-700 relative z-10" />
+      <div className="absolute md:relative right-8 top-8 md:right-auto md:top-auto z-10 flex items-center justify-center p-0 md:p-20 md:w-1/2 pointer-events-none md:pointer-events-auto opacity-50 md:opacity-100">
+        <div className="relative w-16 h-16 md:w-32 md:h-32 lg:w-48 lg:h-48 flex items-center justify-center">
+          <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-1000 hidden md:block" />
+          <service.icon className="w-8 h-8 md:w-16 md:h-16 lg:w-24 lg:h-24 text-accent group-hover:text-primary transition-all duration-700 relative z-10" />
 
           {/* Animated Circle for Icon */}
-          <svg className="absolute inset-0 w-full h-full -rotate-90">
+          <svg className="absolute inset-0 w-full h-full -rotate-90 hidden md:block">
             <circle
               cx="50%" cy="50%" r="48%"
               className="stroke-primary/20 fill-none"

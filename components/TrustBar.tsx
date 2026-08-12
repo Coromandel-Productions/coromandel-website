@@ -6,7 +6,8 @@ import Image from "next/image";
 const partners = [
   { name: "ICC", logo: "/client logos/icc-logo.png" },
   { name: "World Bank", logo: "/client logos/World_Bank-Logo.png" },
-  { name: "Infosys", logo: "/client logos/infosys-logo.jpg" },
+  { name: "Infosys", logo: "/Coromandel x Lune/05_Client_Logos/Infosys.png" },
+  { name: "Knight Frank", logo: "/Coromandel x Lune/05_Client_Logos/Knight Frank.png" },
   { name: "Borussia Dortmund", logo: "/client logos/Borussia_Dortmund_logo.png" },
 ];
 
@@ -33,8 +34,8 @@ export default function TrustBar() {
             >
               {/* Tooltip */}
               <div className="absolute -top-14 left-1/2 -translate-x-1/2 opacity-0 translate-y-4 scale-95 group-hover/logo:opacity-100 group-hover/logo:translate-y-0 group-hover/logo:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none z-50">
-                <div className="px-4 py-2 bg-black/60 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
-                  <span className="text-white text-[10px] font-bold whitespace-nowrap tracking-widest uppercase">
+                <div className="px-4 py-2 bg-surface-2/90 backdrop-blur-xl border border-border rounded-full shadow-2xl">
+                  <span className="text-foreground text-[10px] font-bold whitespace-nowrap tracking-widest uppercase">
                     {partner.name}
                   </span>
                 </div>

@@ -66,7 +66,7 @@ export default function Testimonials() {
                 <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-6 block">
                   {t.category} // {t.client}
                 </span>
-                <p className="font-serif text-2xl md:text-3xl text-foreground leading-relaxed italic mb-10 group-hover:text-white transition-colors">
+                <p className="font-serif text-2xl md:text-3xl text-foreground leading-relaxed italic mb-10 group-hover:text-foreground/80 transition-colors">
                   &ldquo;{t.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-4">

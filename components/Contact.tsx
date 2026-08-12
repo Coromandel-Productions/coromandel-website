@@ -70,7 +70,7 @@ export default function Contact() {
             <p className="text-muted text-xl mb-10 max-w-sm leading-relaxed font-light">
               Booking for Q4 2026. Join the ranks of global brands shaping narratives with us.
             </p>
-            <p className="text-[9px] uppercase tracking-[0.5em] text-white/30 font-bold mb-16">
+            <p className="text-[9px] uppercase tracking-[0.5em] text-muted font-bold mb-16">
               Prefer email for all initial enquiries.
             </p>
 
@@ -238,9 +238,9 @@ export default function Contact() {
                   referrerPolicy="no-referrer-when-downgrade"
                 />
                 <div className="absolute bottom-4 left-4 z-20">
-                  <div className="bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-3">
+                  <div className="bg-surface-2/90 backdrop-blur-md px-4 py-2 rounded-full border border-border flex items-center gap-3">
                     <MapPin size={12} className="text-primary" />
-                    <span className="text-[9px] uppercase tracking-widest text-white/80 font-bold">120 Robinson Rd, Singapore 068913</span>
+                    <span className="text-[9px] uppercase tracking-widest text-foreground/80 font-bold">120 Robinson Rd, Singapore 068913</span>
                   </div>
                 </div>
               </motion.div>

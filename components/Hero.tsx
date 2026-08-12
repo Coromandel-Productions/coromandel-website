@@ -46,14 +46,14 @@ export default function Hero() {
             <source src="/Coromandel%20x%20Lune/04_Showreels/showreel_final.mp4" type="video/mp4" />
           </video>
           
-          {/* Dynamic Darkening Overlay */}
+          {/* Dynamic Darkening Overlay for better contrast */}
           <motion.div 
             style={{ opacity: videoOverlayOpacity }}
-            className="absolute inset-0 bg-background z-10" 
+            className="absolute inset-0 bg-black/80 md:bg-black z-10" 
           />
           
           {/* Gradient Accents */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black z-10" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(241,111,36,0.1),transparent_50%)] z-10" />
         </motion.div>
 
@@ -75,7 +75,7 @@ export default function Hero() {
                 </span>
               </div>
 
-              <h1 className="font-serif text-6xl xs:text-7xl md:text-[10rem] lg:text-[14rem] font-normal leading-[0.8] text-foreground mb-12 tracking-tighter mix-blend-difference">
+              <h1 className="font-serif text-5xl sm:text-7xl md:text-[9rem] lg:text-[13rem] font-normal leading-[0.8] text-white mb-8 md:mb-12 tracking-tighter mix-blend-difference">
                 <div className="flex flex-wrap justify-center lg:justify-start overflow-hidden py-4">
                   {"STORIES".split("").map((char, i) => (
                     <motion.span
@@ -128,7 +128,7 @@ export default function Hero() {
                         }
                       }
                     }}
-                    className="text-muted text-xl md:text-2xl leading-relaxed text-center lg:text-left font-light flex flex-wrap gap-x-[0.3em]"
+                    className="text-white/80 text-xl md:text-2xl leading-relaxed text-center lg:text-left font-light flex flex-wrap gap-x-[0.3em]"
                   >
                     {"India's premiere cinematic production studio since 2016. High-velocity storytelling for Sports, Corporate, and Social Impact.".split(" ").map((word, i) => (
                       <motion.span
@@ -151,18 +151,18 @@ export default function Hero() {
 
 
 
-                <div className="flex flex-wrap items-center gap-8">
+                <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-end gap-6 sm:gap-8 w-full lg:w-auto mt-8 lg:mt-0">
                   <div 
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
-                    className="relative"
+                    className="relative w-full sm:w-auto"
                   >
                     <a
                       href="#contact"
-                      className="relative z-10 flex items-center gap-4 bg-primary text-background px-12 py-6 rounded-full text-xs font-bold uppercase tracking-[0.2em] transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(241,111,36,0.3)]"
+                      className="relative z-10 flex items-center justify-center gap-4 bg-primary text-background px-8 md:px-12 py-5 md:py-6 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(241,111,36,0.3)] w-full sm:w-auto"
                     >
                       Start Production
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                     </a>
                     {isHovered && (
                       <div className="absolute -inset-4 bg-primary/20 blur-2xl rounded-full -z-0" />
@@ -171,7 +171,7 @@ export default function Hero() {
                   
                   <a
                     href="#work"
-                    className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors"
+                    className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-accent transition-colors"
                   >
                     <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:scale-110 transition-all duration-500">
                       <Play size={14} className="fill-current" />

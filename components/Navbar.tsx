@@ -4,13 +4,14 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Play, Globe } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { name: "Services", href: "#services" },
-  { name: "Studio", href: "#about" },
-  { name: "Process", href: "#process" },
-  { name: "Contact", href: "#contact" },
+  { name: "Services", href: "/#services" },
+  { name: "Behind the Lens", href: "/behind-the-lens" },
+  { name: "Process", href: "/#process" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -25,6 +26,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled ? "py-4" : "py-6 lg:py-10"}`}>
       <div className="container mx-auto px-6">
@@ -34,7 +47,7 @@ export default function Navbar() {
             : "bg-transparent border-transparent"
         }`}>
           {/* Logo Section */}
-          <div className="flex items-center gap-6 group cursor-pointer">
+          <Link href="/" className="flex items-center gap-6 group cursor-pointer">
             <div className="relative w-32 h-12 transition-transform duration-500 group-hover:scale-105">
               <Image
                 src="/logo.png"
@@ -52,38 +65,41 @@ export default function Navbar() {
                 PRODUCTIONS
               </span>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-12">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="relative text-[10px] font-bold uppercase tracking-[0.4em] text-foreground/50 hover:text-primary transition-colors group"
               >
                 {link.name}
                 <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
-              </a>
+              </Link>
             ))}
             
             <ThemeToggle />
 
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="relative px-8 py-3 bg-foreground text-background rounded-full text-[10px] font-bold uppercase tracking-[0.3em] overflow-hidden group"
             >
               <span className="relative z-10 transition-colors group-hover:text-background">Start Production</span>
               <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
           <div className="flex items-center gap-4 lg:hidden">
             <ThemeToggle />
             <button
-              className="text-foreground"
+              className="text-foreground p-2 -mr-2 rounded-full hover:bg-white/5 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-controls="mobile-menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -95,14 +111,15 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-background/95 backdrop-blur-3xl z-50 flex flex-col p-12 lg:hidden"
+            className="fixed inset-0 h-[100dvh] bg-background/95 backdrop-blur-3xl z-50 flex flex-col p-8 md:p-12 lg:hidden overflow-y-auto"
           >
-            <div className="flex justify-between items-center mb-20">
-              <div className="flex items-center gap-4">
+            <div className="flex justify-between items-center mb-16 md:mb-20">
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-4">
                 <div className="relative w-24 h-10">
                   <Image
                     src="/logo.png"
@@ -119,25 +136,32 @@ export default function Navbar() {
                     PRODUCTIONS
                   </span>
                 </div>
-              </div>
-              <button onClick={() => setIsMobileMenuOpen(false)}>
+              </Link>
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 -mr-2 rounded-full hover:bg-white/5 transition-colors"
+                aria-label="Close menu"
+              >
                 <X size={32} className="text-foreground" />
               </button>
             </div>
 
             <div className="flex flex-col gap-10">
               {navLinks.map((link, i) => (
-                <motion.a
+                <motion.div
                   key={link.name}
-                  href={link.href}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-serif text-6xl font-bold tracking-tighter hover:text-primary transition-colors italic"
                 >
-                  {link.name}
-                </motion.a>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="font-serif text-6xl font-bold tracking-tighter hover:text-primary transition-colors italic block"
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
               ))}
             </div>
 
