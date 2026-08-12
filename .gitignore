@@ -41,9 +41,13 @@ yarn-error.log*
 next-env.d.ts
 # Ignore large assets
 public/Coromandel x Lune/04_Showreels/
-public/Coromandel x Lune/05_Client_Logos/
+# public/Coromandel x Lune/05_Client_Logos/
 public/Coromandel x Lune/07_BTS_Images/*
 !public/Coromandel x Lune/07_BTS_Images/bts-*.jpg
 !public/Coromandel x Lune/07_BTS_Images/Core Team Photos/
 public/Coromandel x Lune/07_BTS_Images/Core Team Photos/*
 !public/Coromandel x Lune/07_BTS_Images/Core Team Photos/core-team-homepage-2.jpg
+!public/Coromandel x Lune/05_Client_Logos/
+public/Coromandel x Lune/05_Client_Logos/*
+!public/Coromandel x Lune/05_Client_Logos/Infosys.png
+!public/Coromandel x Lune/05_Client_Logos/Knight Frank.png
