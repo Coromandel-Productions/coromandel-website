@@ -37,14 +37,6 @@ const services = [
     category: "04 // NARRATIVE",
     image: "/work-bat-maker.png",
     href: "/services/documentaries",
-  },
-  {
-    title: "Original Content",
-    description: "Conceptualizing and producing original IP and scripted content that pushes boundaries.",
-    icon: Sparkles,
-    category: "05 // CREATION",
-    image: "/work-sports.png",
-    href: "/services/originals",
   }
 ];
 

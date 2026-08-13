@@ -106,7 +106,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center gap-4">
              <span className="text-[10px] uppercase tracking-[0.3em] text-muted decoration-primary underline underline-offset-4">Singapore · Chennai</span>
              <span className="text-[10px] uppercase tracking-[0.3em] text-muted underline underline-offset-4 decoration-primary">UK Partnership Studio</span>
-             <span className="text-[9px] text-muted/40 tracking-[0.2em] uppercase font-semibold">Developed by <span className="text-primary/60 font-bold">Lune Studio</span></span>
+             <span className="text-[9px] text-muted/40 tracking-[0.2em] uppercase font-semibold">Developed by <a href="https://lunestudio.in" target="_blank" rel="noopener noreferrer" className="text-primary/60 font-bold hover:text-primary transition-colors">Lune Studio</a></span>
           </div>
         </div>
 

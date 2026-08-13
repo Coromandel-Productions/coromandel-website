@@ -150,7 +150,7 @@ export default function About() {
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 {[
-                  { value: "9+", label: "Years" },
+                  { value: "10", label: "Years" },
                   { value: "3", label: "Continents" },
                   { value: "100+", label: "Productions" },
                 ].map((stat) => (
