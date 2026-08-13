@@ -5,9 +5,11 @@ import Image from "next/image";
 
 const partners = [
   { name: "ICC", logo: "/client logos/icc-logo.png" },
-  { name: "World Bank", logo: "/client logos/World_Bank-Logo.png" },
-  { name: "Infosys", logo: "/Coromandel x Lune/05_Client_Logos/Infosys.png" },
+  { name: "World Bank", logo: "/Coromandel x Lune/05_Client_Logos/worldbank2.png" },
+  { name: "Infosys", logo: "/Coromandel x Lune/05_Client_Logos/infosys2.png" },
   { name: "Knight Frank", logo: "/Coromandel x Lune/05_Client_Logos/Knight Frank.png" },
+  { name: "BCCI", logo: "/Coromandel x Lune/05_Client_Logos/BCCI.png" },
+  { name: "Speciale Invest", logo: "/Coromandel x Lune/05_Client_Logos/Speciale Invest.png" },
   { name: "Borussia Dortmund", logo: "/client logos/Borussia_Dortmund_logo.png" },
 ];
 
