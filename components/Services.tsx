@@ -11,7 +11,7 @@ const services = [
     description: "Capturing the intensity, triumph, and soul of competition with top-tier cinematography.",
     icon: Trophy,
     category: "01 // ACTION",
-    image: "/work-sports.png",
+    video: "/Coromandel x Lune/04_Showreels/Video Thumbnails/Sport.mp4",
     href: "/services/sports",
   },
   {
@@ -19,23 +19,23 @@ const services = [
     description: "Elevating brand identity through cinematic storytelling that connects with modern audiences.",
     icon: Building2,
     category: "02 // IDENTITY",
-    image: "/work-corporate.png",
+    video: "/Coromandel x Lune/04_Showreels/Video Thumbnails/Corporate.mp4",
     href: "/services/corporate",
   },
   {
-    title: "Impact Stories",
-    description: "Films from the heart. Documenting stories that drive change and move the needle.",
+    title: "Human Interest",
+    description: "Films from the heart — stories of resilience, compassion, and the remarkable breadth of the human experience.",
     icon: Heart,
-    category: "03 // PURPOSE",
-    image: "/work-documentary.png",
-    href: "/services/impact-stories",
+    category: "03 // HUMANITY",
+    video: "/Coromandel x Lune/04_Showreels/Video Thumbnails/Human Interest.mp4",
+    href: "/services/human-interest",
   },
   {
     title: "Documentaries",
     description: "In-depth, unscripted narratives that explore the human condition beyond the lens.",
     icon: Film,
     category: "04 // NARRATIVE",
-    image: "/work-bat-maker.png",
+    video: "/Coromandel x Lune/04_Showreels/Video Thumbnails/Documentary.mp4",
     href: "/services/documentaries",
   }
 ];
@@ -176,29 +176,44 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => router.push(service.href)}
-      className="relative w-full md:min-w-[80vw] h-[60vh] md:h-[70vh] bg-surface-2 rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden group cursor-pointer flex flex-col md:flex-row shadow-2xl"
+      className="relative w-full md:min-w-[80vw] h-[60vh] md:h-[70vh] bg-black rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden group cursor-pointer flex flex-col md:flex-row shadow-2xl"
     >
-      {/* Background Image Parallax */}
+      {/* Background Image/Video Parallax */}
       <div className="absolute inset-0 z-0">
-        <motion.img
-          src={service.image}
-          alt={service.title}
-          className="w-full h-full object-cover transition-all duration-1000 grayscale group-hover:grayscale-0 opacity-20 group-hover:opacity-40"
-          style={{
-            scale: isHovered ? 1.05 : 1,
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        {service.video ? (
+          <motion.video
+            src={service.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover transition-all duration-1000 opacity-60 group-hover:opacity-100"
+            style={{
+              scale: isHovered ? 1.05 : 1,
+            }}
+          />
+        ) : (
+          <motion.img
+            src={service.image}
+            alt={service.title}
+            className="w-full h-full object-cover transition-all duration-1000 opacity-60 group-hover:opacity-100"
+            style={{
+              scale: isHovered ? 1.05 : 1,
+            }}
+          />
+        )}
+        {/* Only bottom shading for text readability, leaving top clear */}
+        <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
       </div>
 
       <div className="relative z-10 flex flex-col justify-end p-8 md:p-20 w-full md:w-1/2 h-full md:h-auto">
         <span className="text-[10px] uppercase tracking-[0.5em] text-primary mb-4 md:mb-6 block font-bold">
           {service.category}
         </span>
-        <h3 className="font-serif text-4xl md:text-7xl lg:text-8xl text-foreground group-hover:text-accent transition-all duration-700 tracking-tighter mb-4 md:mb-8 leading-tight">
+        <h3 className="font-serif text-4xl md:text-7xl lg:text-8xl text-white group-hover:text-accent transition-all duration-700 tracking-tighter mb-4 md:mb-8 leading-tight">
           {service.title}
         </h3>
-        <p className="text-lg md:text-xl text-muted group-hover:text-foreground transition-colors duration-700 leading-relaxed font-light mb-8">
+        <p className="text-lg md:text-xl text-white/70 group-hover:text-white transition-colors duration-700 leading-relaxed font-light mb-8">
           {service.description}
         </p>
         <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
