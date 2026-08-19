@@ -11,7 +11,7 @@ const services = [
     description: "Capturing the intensity, triumph, and soul of competition with top-tier cinematography.",
     icon: Trophy,
     category: "01 // ACTION",
-    video: "/Coromandel x Lune/04_Showreels/Video Thumbnails/Sport.mp4",
+    video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Sport.mp4",
     href: "/services/sports",
   },
   {
@@ -19,7 +19,7 @@ const services = [
     description: "Elevating brand identity through cinematic storytelling that connects with modern audiences.",
     icon: Building2,
     category: "02 // IDENTITY",
-    video: "/Coromandel x Lune/04_Showreels/Video Thumbnails/Corporate.mp4",
+    video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Corporate.mp4",
     href: "/services/corporate",
   },
   {
@@ -27,7 +27,7 @@ const services = [
     description: "Films from the heart — stories of resilience, compassion, and the remarkable breadth of the human experience.",
     icon: Heart,
     category: "03 // HUMANITY",
-    video: "/Coromandel x Lune/04_Showreels/Video Thumbnails/Human Interest.mp4",
+    video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Human%20Interest.mp4",
     href: "/services/human-interest",
   },
   {
@@ -35,7 +35,7 @@ const services = [
     description: "In-depth, unscripted narratives that explore the human condition beyond the lens.",
     icon: Film,
     category: "04 // NARRATIVE",
-    video: "/Coromandel x Lune/04_Showreels/Video Thumbnails/Documentary.mp4",
+    video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Documentary.mp4",
     href: "/services/documentaries",
   }
 ];
@@ -52,7 +52,7 @@ export default function Services() {
     <section ref={targetRef} id="services" className="relative h-auto md:h-[400vh] bg-background">
       <div className="md:sticky md:top-0 flex md:h-screen md:items-center overflow-hidden">
         {/* Moving Content - horizontal on desktop, vertical on mobile */}
-        <motion.div style={{ x }} className="flex flex-col md:flex-row gap-12 md:gap-24 px-6 md:px-24 items-center max-md:!transform-none max-md:w-full py-24 md:py-0">
+        <motion.div style={{ x }} className="flex flex-col md:flex-row gap-12 md:gap-24 px-6 md:px-24 items-center max-md:!transform-none max-md:w-full py-24 md:py-0 will-change-transform">
           {/* Section Introduction Card */}
           <div className="flex flex-col justify-center w-full md:min-w-[40vw] md:mr-12">
             <motion.div
@@ -181,17 +181,19 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
       {/* Background Image/Video Parallax */}
       <div className="absolute inset-0 z-0">
         {service.video ? (
-          <motion.video
-            src={service.video}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover transition-all duration-1000 opacity-60 group-hover:opacity-100"
-            style={{
-              scale: isHovered ? 1.05 : 1,
-            }}
-          />
+            <motion.video
+              src={service.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover transition-all duration-1000 opacity-60 group-hover:opacity-100"
+              style={{
+                scale: isHovered ? 1.05 : 1,
+                willChange: "transform, opacity",
+              }}
+            />
         ) : (
           <motion.img
             src={service.image}
