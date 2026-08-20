@@ -14,7 +14,7 @@ export const projects: Project[] = [
   // ─── CORPORATE ──────────────────────────────────────────────────────
   {
     id: "corporate-1",
-    title: "Agrocorp International",
+    title: "ICC Annual Conference 2025 Singapore",
     category: "Corporate",
     slug: "corporate",
     vimeoId: "1114775571",
@@ -25,7 +25,7 @@ export const projects: Project[] = [
   },
   {
     id: "corporate-2",
-    title: "British International Investment — Ghana",
+    title: "STF Asia Leadership Dialogue 2025",
     category: "Corporate",
     slug: "corporate",
     vimeoId: "1100808217",
@@ -36,7 +36,7 @@ export const projects: Project[] = [
   },
   {
     id: "corporate-3",
-    title: "SPIC",
+    title: "BII - mPharma",
     category: "Corporate",
     slug: "corporate",
     vimeoId: "882346707",
@@ -47,7 +47,7 @@ export const projects: Project[] = [
   },
   {
     id: "corporate-4",
-    title: "St. Gallen Symposium — Asia Leadership Dialogue",
+    title: "STF Asia Leadership Dialogue 2026",
     category: "Corporate",
     slug: "corporate",
     vimeoId: "1186118902",
@@ -58,7 +58,7 @@ export const projects: Project[] = [
   },
   {
     id: "corporate-5",
-    title: "Knight Frank",
+    title: "SPIC",
     category: "Corporate",
     slug: "corporate",
     vimeoId: "390278908",
@@ -69,7 +69,7 @@ export const projects: Project[] = [
   },
   {
     id: "corporate-6",
-    title: "WRLDCTY — Copenhagen",
+    title: "LMW - Corporate Film",
     category: "Corporate",
     slug: "corporate",
     vimeoId: "833926707",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
   },
   {
     id: "corporate-7",
-    title: "LWM",
+    title: "Shakti | Knight Frank APAC Conference 2024",
     category: "Corporate",
     slug: "corporate",
     vimeoId: "1031063241",
