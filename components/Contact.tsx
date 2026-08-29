@@ -37,12 +37,12 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { id: "email", icon: Mail, label: "Email Us", value: "contact@coromandel-productions.com", sub: "Response within 24h" },
-    { id: "location", icon: MapPin, label: "Our Studio", value: "120 Robinson Rd, SG", sub: "Singapore HQ" },
+    { id: "email", icon: Mail, label: "Email Us", value: "contact@coromandel-productions.com" },
+    { id: "location", icon: MapPin, label: "Our Studio", value: "176, Orchard Road, SG" },
   ];
 
   return (
-    <section id="contact" className="py-40 bg-background relative overflow-hidden">
+    <section id="contact" className="py-20 md:py-40 bg-background relative overflow-hidden">
       {/* Dynamic Background Noise & Gradients */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       <div className="absolute -bottom-1/2 -right-1/4 w-[80%] h-full bg-accent/5 blur-[160px] rounded-full -z-10" />
@@ -62,8 +62,8 @@ export default function Contact() {
               </span>
             </motion.div>
 
-            <h2 className="font-serif text-7xl md:text-8xl lg:text-9xl text-foreground tracking-tighter leading-[0.85] mb-12">
-              LET&apos;S START <br />
+            <h2 className="font-serif text-5xl md:text-8xl lg:text-9xl text-foreground tracking-tighter leading-[0.85] mb-12">
+              LET&apos;S BUILD <br />
               YOUR <span className="italic text-primary">LEGACY.</span>
             </h2>
 
@@ -98,7 +98,6 @@ export default function Contact() {
                       {info.value}
                       {info.id === 'location' && <ArrowUpRight size={16} className="text-primary opacity-0 group-hover:opacity-100 transition-all" />}
                     </p>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-muted mt-2">{info.sub}</p>
                   </div>
                 </motion.div>
               ))}
@@ -230,7 +229,7 @@ export default function Contact() {
               >
                 <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.818451100378!2d103.84812837621415!3d1.2798616117750873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da190e3f282467%3A0x6b801a6176377e68!2s120%20Robinson%20Rd%2C%20Singapore%20068913!5e0!3m2!1sen!2ssg!4v1713767000000!5m2!1sen!2ssg" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.2100868843946!2d-0.13788548422998348!3d51.50749007963503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604d3e75069a1%3A0xc4ab5fb45b59eb6e!2s11%20St%20James&#39;s%20Sq%2C%20St.%20James&#39;s%2C%20London%20SW1Y%204LB%2C%20UK!5e0!3m2!1sen!2suk!4v1713767000000!5m2!1sen!2suk" 
                   className="w-full h-full grayscale invert opacity-60 contrast-125"
                   style={{ border: 0 }} 
                   allowFullScreen={true} 
@@ -240,7 +239,7 @@ export default function Contact() {
                 <div className="absolute bottom-4 left-4 z-20">
                   <div className="bg-surface-2/90 backdrop-blur-md px-4 py-2 rounded-full border border-border flex items-center gap-3">
                     <MapPin size={12} className="text-primary" />
-                    <span className="text-[9px] uppercase tracking-widest text-foreground/80 font-bold">120 Robinson Rd, Singapore 068913</span>
+                    <span className="text-[9px] uppercase tracking-widest text-foreground/80 font-bold">176, Orchard Road, SG</span>
                   </div>
                 </div>
               </motion.div>

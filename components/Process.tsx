@@ -7,32 +7,32 @@ const steps = [
   {
     num: "01",
     title: "Discovery",
-    description: "We start with a 15-minute call to understand your goals, audience, and the emotional core of the project.",
+    description: "We start with a brief introductory call to understand your goals, audience, emotional core and budget preferences for the project.",
   },
   {
     num: "02",
     title: "Treatment",
-    description: "Our creative directors develop a visual direction and narrative treatment for your approval within 3 days.",
+    description: "Our creative team develops a visual direction and narrative treatment for your approval.",
   },
   {
     num: "03",
     title: "Pre-Production",
-    description: "Shot listing, scripting, location scouting, and permits. We handle the logistics so you don't have to.",
+    description: "Scripting, storyboarding, pre-interviews, scouting, permits. We handle all the logistics and prep so you don't have to.",
   },
   {
     num: "04",
     title: "Production",
-    description: "The shoot day. Using high-end units (ARRI/RED) and a tailored crew to capture the vision safely.",
+    description: "The shoot day(s). Using high-end gear and crew to capture your vision.",
   },
   {
     num: "05",
     title: "Post-Production",
-    description: "Editing, color grading, sound design, and VFX. We deliver the first cut within 10 working days.",
+    description: "Bringing the captured vision to your screen. Editing, color grading, sound design, VFX et al. We deliver the first cut within two weeks.",
   },
   {
     num: "06",
     title: "Delivery",
-    description: "Two rounds of collaborative amends via our online portal, followed by master delivery in all formats.",
+    description: "Stipulated rounds of collaborative feedback followed by master delivery in all formats.",
   },
 ];
 
@@ -55,7 +55,7 @@ const StepItem = ({ step, index, scrollYProgress }: { step: any, index: number, 
   const blur = useTransform(scrollYProgress, [stepStart, target], ["blur(4px)", "blur(0px)"]);
 
   return (
-    <div className={`relative py-12 md:py-24 flex w-full group justify-start ${isEven ? "md:justify-start md:text-right" : "md:justify-end md:text-left"}`}>
+    <div className={`relative py-8 md:py-24 flex w-full group justify-start ${isEven ? "md:justify-start md:text-right" : "md:justify-end md:text-left"}`}>
       {/* Interactive Node / Dot */}
       <motion.div
         style={{
@@ -70,7 +70,7 @@ const StepItem = ({ step, index, scrollYProgress }: { step: any, index: number, 
       {/* Massive Faded Background Number */}
       <motion.div
         style={{ opacity: textOpacity, y: yOffset }}
-        className={`absolute top-0 md:top-1/2 md:-translate-y-1/2 right-4 md:right-auto ${isEven ? "md:right-12 lg:right-24" : "md:left-12 lg:left-24"} text-[6rem] md:text-[14rem] font-serif font-bold text-foreground/[0.03] select-none pointer-events-none leading-none tracking-tighter`}
+        className={`absolute top-0 md:top-1/2 md:-translate-y-1/2 right-4 md:right-auto ${isEven ? "md:right-12 lg:right-24" : "md:left-12 lg:left-24"} text-[4rem] md:text-[14rem] font-serif font-bold text-foreground/[0.03] select-none pointer-events-none leading-none tracking-tighter`}
       >
         {step.num}
       </motion.div>
@@ -80,12 +80,12 @@ const StepItem = ({ step, index, scrollYProgress }: { step: any, index: number, 
         style={{ opacity: textOpacity, y: yOffset, filter: blur }} 
         className={`relative z-10 w-full pl-8 md:pl-0 md:w-1/2 ${isEven ? "md:pr-8 lg:pr-24" : "md:pl-8 lg:pl-24"}`}
       >
-        <h3 className={`text-2xl md:text-5xl font-bold uppercase tracking-widest text-foreground mb-3 md:mb-6 flex justify-start items-center ${isEven ? "md:justify-end" : "md:justify-start"}`}>
+        <h3 className={`text-xl md:text-5xl font-bold uppercase tracking-widest text-foreground mb-2 md:mb-6 flex justify-start items-center ${isEven ? "md:justify-end" : "md:justify-start"}`}>
           <span className={`text-primary mr-4 md:mr-6 font-serif italic opacity-80 ${isEven ? "md:hidden" : "md:block"}`}>{step.num}</span>
           {step.title}
           <span className={`text-primary ml-4 md:ml-6 font-serif italic opacity-80 hidden ${isEven ? "md:block" : "md:hidden"}`}>{step.num}</span>
         </h3>
-        <p className={`text-muted text-lg md:text-2xl leading-relaxed font-light text-left max-w-xl ${isEven ? "md:text-right md:ml-auto" : "md:text-left md:mr-auto"}`}>
+        <p className={`text-muted text-base md:text-2xl leading-relaxed font-light text-left max-w-xl ${isEven ? "md:text-right md:ml-auto" : "md:text-left md:mr-auto"}`}>
           {step.description}
         </p>
       </motion.div>
@@ -110,9 +110,9 @@ export default function Process() {
   const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="process" className="py-32 bg-background relative overflow-hidden">
+    <section id="process" className="py-20 md:py-32 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mb-16 md:mb-32 mx-auto text-center">
+        <div className="max-w-4xl mb-12 md:mb-32 mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-6 md:mb-8">
             <div className="w-8 md:w-12 h-[1px] bg-primary" />
             <span className="text-primary uppercase tracking-[0.4em] text-[10px] font-bold">
@@ -120,7 +120,7 @@ export default function Process() {
             </span>
             <div className="w-8 md:w-12 h-[1px] bg-primary" />
           </div>
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground tracking-tighter leading-[0.85]">
+          <h2 className="font-serif text-4xl md:text-7xl lg:text-8xl text-foreground tracking-tighter leading-[0.85]">
             ROADMAP TO <br />
             <span className="italic text-primary">DELIVERY.</span>
           </h2>

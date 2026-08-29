@@ -90,28 +90,20 @@ export default function GlobalMap() {
   const tooltipSubText = "text-muted";
 
   return (
-    <section id="global" className="py-40 bg-background relative overflow-hidden">
+    <section id="global" className="py-20 md:py-40 bg-background relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(241,111,36,0.04),transparent_70%)]" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-20 gap-12">
           <div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-[10px] uppercase tracking-[0.6em] text-primary font-bold mb-8"
-            >
-              Global Reach
-            </motion.div>
-            <h2 className="font-serif text-6xl md:text-8xl lg:text-[10rem] text-foreground tracking-tighter leading-[0.85]">
+            <h2 className="font-serif text-5xl md:text-8xl lg:text-[10rem] text-foreground tracking-tighter leading-[0.85]">
               A GLOBAL <br />
               <span className="italic text-primary">STUDIO.</span>
             </h2>
           </div>
           <p className="text-muted text-lg md:text-xl leading-relaxed max-w-sm font-light text-center lg:text-left">
-            Five continents. One cinematic vision. We produce wherever the story demands.
+            Six continents. One overarching vision. Stories from the heart.
           </p>
         </div>
 
@@ -230,33 +222,13 @@ export default function GlobalMap() {
           <div className="absolute top-4 right-4 md:top-6 md:right-6 flex flex-col gap-2 md:gap-3">
             <div className="flex items-center gap-2 md:gap-3">
               <div className="w-2 h-2 md:w-3 md:h-3 rounded-full" style={{ backgroundColor: dotColor }} />
-              <span className={`text-[7px] md:text-[8px] uppercase tracking-widest ${isDark ? "text-white/40" : "text-black/40"}`}>Studio Hubs</span>
+              <span className={`text-[7px] md:text-[8px] uppercase tracking-widest ${isDark ? "text-white/40" : "text-black/40"}`}>UK & India</span>
             </div>
             <div className="flex items-center gap-2 md:gap-3">
               <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full" style={{ backgroundColor: inactiveDotColor }} />
               <span className={`text-[7px] md:text-[8px] uppercase tracking-widest ${isDark ? "text-white/40" : "text-black/40"}`}>Production Locations</span>
             </div>
           </div>
-        </div>
-
-        {/* Location pills row */}
-        <div className="flex flex-wrap gap-4 mt-12 justify-center">
-          {locations.map((loc) => (
-            <motion.button
-              key={loc.id}
-              onClick={() => setActiveLocation(activeLocation?.id === loc.id ? null : loc)}
-              className={`flex items-center gap-3 px-6 py-3 rounded-full border text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-300 ${
-                activeLocation?.id === loc.id
-                  ? "bg-primary text-background border-primary"
-                  : "border-white/10 text-muted hover:border-primary/30 hover:text-primary"
-              }`}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <MapPin size={10} />
-              {loc.name}
-            </motion.button>
-          ))}
         </div>
       </div>
     </section>

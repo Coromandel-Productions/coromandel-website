@@ -100,7 +100,7 @@ export default function About() {
                 FOUNDED
                 <span className="block text-accent italic ml-2">IN 2016.</span>
                 DRIVEN BY
-                <span className="block text-primary ml-2">TRUTH.</span>
+                <span className="block text-primary ml-2">PURPOSE.</span>
               </h2>
 
               {/* Body copy — with animated reveal */}
@@ -112,10 +112,10 @@ export default function About() {
                   transition={{ delay: 0.15, duration: 0.8 }}
                 >
                   Launched in 2016 by award-winning filmmaker{" "}
-                  <span className="text-foreground font-semibold">Veeru Murugappan</span>, Coromandel Productions
-                  emerged with a singular vision: to tell stories that resonate beyond the surface level.
-                  Today, we are India&apos;s specialist studio based in{" "}
-                  <span className="text-foreground font-semibold">Singapore and Chennai.</span>
+                  <span className="text-foreground font-semibold">Veeru Murugappan</span>, Coromandel Productions 
+                  emerged with a singular vision: to tell stories that resonate beyond the surface level. 
+                  Today, we are a specialist studio from{" "}
+                  <span className="text-foreground font-semibold">Singapore and Chennai,</span> with a truly global footprint.
                 </motion.p>
 
                 <motion.p
@@ -124,10 +124,9 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.25, duration: 0.8 }}
                 >
-                  In 2020, we solidified our international presence by becoming{" "}
-                  <span className="text-primary italic font-medium">co-owners of Barn Media</span>, a premier
-                  UK-based production house — bridging Asian storytelling with world-class European production
-                  standards.
+                  In 2020, we solidified our international presence further by becoming{" "}
+                  <span className="text-primary italic font-medium">co-owners of Barn Media</span>, a premier 
+                  UK-based production house specialising in long-form storytelling with finesse and nuance at their core.
                 </motion.p>
 
                 <motion.p
@@ -136,8 +135,7 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.35, duration: 0.8 }}
                 >
-                  We specialize in high-impact sports features, corporate documentaries, and social impact stories.
-                  We don&apos;t just point cameras — we build the architectural frameworks that allow truth to speak.
+                  Together, our forte lies in weaving together soulful stories that range across sports, brands, human impact and everything in between.
                 </motion.p>
               </div>
 
@@ -150,9 +148,9 @@ export default function About() {
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 {[
-                  { value: "10", label: "Years" },
-                  { value: "3", label: "Continents" },
-                  { value: "100+", label: "Productions" },
+                  { value: "10", label: "YEARS" },
+                  { value: "6", label: "CONTINENTS" },
+                  { value: "100+", label: "PRODUCTIONS" },
                 ].map((stat) => (
                   <div
                     key={stat.label}
@@ -192,12 +190,12 @@ export default function About() {
                 className="block group relative w-full rounded-2xl md:rounded-3xl overflow-hidden border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors duration-500 p-10 md:p-14"
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -z-10 group-hover:bg-primary/20 transition-colors duration-700" />
-                <p className="text-[10px] uppercase tracking-[0.5em] text-primary font-bold mb-4">The Studio</p>
+                <p className="text-[10px] uppercase tracking-[0.5em] text-primary font-bold mb-4">THE STUDIO</p>
                 <h3 className="font-serif text-4xl md:text-5xl text-foreground tracking-tighter leading-tight mb-8">
-                  Discover <span className="italic text-primary">Behind the Lens.</span>
+                  Go <span className="italic text-primary">Behind the Lens.</span>
                 </h3>
                 <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[0.3em] text-foreground group-hover:text-primary transition-colors duration-300">
-                  Explore the full story
+                  KNOW OUR FULL STORY
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>

@@ -6,7 +6,6 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import Process from "@/components/Process";
-import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import TrustBar from "@/components/TrustBar";
@@ -31,7 +30,6 @@ export default function Home() {
         <About />
         <GlobalMap />
         <Process />
-        <Pricing />
         <Contact />
       </div>
       <Footer />

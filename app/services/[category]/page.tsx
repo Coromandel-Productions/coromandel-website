@@ -30,10 +30,10 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
 
       {/* Hero Header */}
       <section className="relative min-h-[55vh] flex flex-col justify-end pb-20 pt-40 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(241,111,36,0.08),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(241,111,36,0.08),transparent_60%)] pointer-events-none" />
 
 
-        <div className="container mx-auto px-8">
+        <div className="container mx-auto px-8 relative z-10">
           {/* Back nav */}
           <motion.div 
             initial={{ opacity: 0, x: -10 }}

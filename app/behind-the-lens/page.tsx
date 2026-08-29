@@ -7,10 +7,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const coreTeamNames = [
-  { name: "Veeru Murugappan", role: "Founder/Director" },
+  { name: "Veeru Murugappan", role: "Founder & Director" },
   { name: "Harsh Shah", role: "Head of Production" },
-  { name: "Deeya Mirpuri", role: "Video Producer" },
-  { name: "Pranav Thimmaiah", role: "Senior Video Editor" },
+  { name: "Deeya Mirpuri", role: "Senior Producer & Editor" },
+  { name: "Pranav Thimmaiah", role: "Senior Editor" },
 ];
 
 const coreTeamPhotos = [
@@ -47,7 +47,7 @@ export default function BehindTheLens() {
     <main className="bg-background min-h-screen">
       <Navbar />
       {/* Hero Section */}
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      <section className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: yBg }} className="absolute inset-0 z-0">
           <Image
             src="/Coromandel x Lune/07_BTS_Images/PHOTO-2022-04-19-19-29-54.jpg"
@@ -68,7 +68,7 @@ export default function BehindTheLens() {
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] text-primary mb-6 block">
               The Studio
             </span>
-            <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] font-normal leading-[0.85] text-white tracking-tighter mb-8 mix-blend-difference">
+            <h1 className="font-serif text-5xl md:text-8xl lg:text-[10rem] font-normal leading-[0.85] text-white tracking-tighter mb-8 mix-blend-difference">
               BEHIND <br />
               <span className="italic text-primary/90">THE LENS.</span>
             </h1>
@@ -77,7 +77,7 @@ export default function BehindTheLens() {
       </section>
 
       {/* Origins Story */}
-      <section className="py-24 md:py-40 bg-background relative z-20">
+      <section className="py-16 md:py-40 bg-background relative z-20">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
             <motion.div 
@@ -100,10 +100,10 @@ export default function BehindTheLens() {
               className="lg:col-span-7 flex flex-col gap-8 text-lg md:text-2xl text-muted font-light leading-relaxed"
             >
               <p>
-                Coromandel Productions was born out of a desire to tell stories that matter. Based in Singapore and Chennai, we are a collective of filmmakers, visionaries, and craftsmen dedicated to pushing the boundaries of cinematic storytelling.
+                Coromandel Productions was born out of a desire to tell stories that matter. Based in Singapore and India for the world, we are a collective of storytellers dedicated to pushing the boundaries and delivering quality video content without compromise.
               </p>
               <p>
-                We believe that true magic happens when raw emotion meets impeccable production value. Our team traverses the globe to capture authenticity, producing work that isn't just seen, but felt.
+                We believe true magic happens when raw emotion meets impeccable production value. Our teams, spread across the globe, capture and deliver authentic work that isn't just seen, but felt through our stories.
               </p>
             </motion.div>
           </div>
@@ -111,7 +111,7 @@ export default function BehindTheLens() {
       </section>
 
       {/* The Collective */}
-      <section className="py-24 bg-surface relative z-20 overflow-hidden">
+      <section className="py-16 md:py-24 bg-surface relative z-20 overflow-hidden">
         <div className="container mx-auto px-6 mb-16 md:mb-24">
           <div className="flex items-center gap-4 mb-12">
             <div className="w-12 h-[1px] bg-primary/50" />
@@ -132,7 +132,7 @@ export default function BehindTheLens() {
                   transition={{ duration: 0.8, delay: idx * 0.1 }}
                   className="flex flex-col group cursor-default"
                 >
-                  <h3 className="font-serif text-4xl md:text-5xl text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-serif text-3xl md:text-5xl text-foreground mb-2 group-hover:text-primary transition-colors">
                     {member.name}
                   </h3>
                   <span className="text-xs uppercase tracking-[0.3em] text-muted group-hover:text-foreground transition-colors">
@@ -182,7 +182,7 @@ export default function BehindTheLens() {
       </section>
 
       {/* Life on Set Masonry Grid */}
-      <section className="py-24 md:py-40 bg-background relative z-20 overflow-hidden">
+      <section className="py-16 md:py-40 bg-background relative z-20 overflow-hidden">
         <div className="container mx-auto px-6 mb-16 md:mb-24 text-center">
           <span className="text-[10px] uppercase tracking-[0.5em] text-primary font-bold mb-4 block">
             Behind the Scenes

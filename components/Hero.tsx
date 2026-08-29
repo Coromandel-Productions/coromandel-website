@@ -14,26 +14,18 @@ export default function Hero() {
   });
 
   // Video Background Transforms
-  const videoScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.1, 1.2]);
-  const videoOverlayOpacity = useTransform(scrollYProgress, [0, 0.4, 0.6], [0.2, 0.4, 0.7]);
-  const containerScale = useTransform(scrollYProgress, [0.8, 1], [1, 0.9]);
-  const containerOpacity = useTransform(scrollYProgress, [0.85, 1], [1, 0]);
-
-  // Content Transforms (The Reveal)
-  const textOpacity = useTransform(scrollYProgress, [0.15, 0.4, 0.7, 0.85], [0, 1, 1, 0]);
-  const textY = useTransform(scrollYProgress, [0.15, 0.4, 0.7, 0.85], [100, 0, 0, -50]);
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const videoOverlayOpacity = useTransform(scrollYProgress, [0, 1], [0.2, 0.7]);
   
   // Smooth Springs
   const smoothVideoScale = useSpring(videoScale, { stiffness: 60, damping: 25 });
-  const smoothTextOpacity = useSpring(textOpacity, { stiffness: 60, damping: 25 });
-  const smoothTextY = useSpring(textY, { stiffness: 60, damping: 25 });
 
   return (
-    <section ref={containerRef} id="hero" className="relative h-[250vh] bg-background">
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+    <section ref={containerRef} id="hero" className="relative h-[100dvh] bg-background">
+      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
         {/* Dynamic Background Wrapper */}
         <motion.div 
-          style={{ scale: smoothVideoScale, opacity: containerOpacity }}
+          style={{ scale: smoothVideoScale }}
           className="absolute inset-0 z-0 origin-center will-change-transform"
         >
           <video
@@ -59,23 +51,21 @@ export default function Hero() {
 
         {/* Content Layer */}
         <motion.div 
-          style={{ 
-            opacity: smoothTextOpacity, 
-            y: smoothTextY,
-            scale: containerScale
-          }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, delay: 2, ease: [0.16, 1, 0.3, 1] }}
           className="container mx-auto px-6 relative z-20 h-full flex flex-col justify-center pt-20"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-[-10vh]">
             <div className="lg:col-span-12 text-center lg:text-left">
-              <div className="inline-flex items-center gap-3 mb-10 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md">
+              <div className="inline-flex items-center gap-3 mb-6 md:mb-10 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-primary uppercase tracking-[0.4em] text-[10px] font-bold py-1">
                   Singapore · Chennai
                 </span>
               </div>
 
-              <h1 className="font-serif text-5xl sm:text-7xl md:text-[9rem] lg:text-[13rem] font-normal leading-[0.8] text-white mb-8 md:mb-12 tracking-tighter mix-blend-difference">
+              <h1 className="font-serif text-[3.5rem] sm:text-7xl md:text-[9rem] lg:text-[13rem] font-normal leading-[0.85] text-white mb-6 md:mb-12 tracking-tighter mix-blend-difference">
                 <div className="flex flex-wrap justify-center lg:justify-start overflow-hidden py-4">
                   {"STORIES".split("").map((char, i) => (
                     <motion.span
@@ -100,12 +90,11 @@ export default function Hero() {
                   className="italic font-light text-accent flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 bg-gradient-to-r from-accent via-white to-accent bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent"
                 >
                   UNBOUND
-                  <div className="hidden md:block w-32 h-32 border border-white/10 rounded-full border-dashed animate-[spin_20s_linear_infinite]" />
                 </motion.span>
               </h1>
 
 
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mt-12 w-full">
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 mt-8 md:mt-12 w-full">
                 <div className="flex items-start gap-8 max-w-xl">
                   {/* Architectural Anchor Line */}
                   <motion.div 
@@ -118,19 +107,18 @@ export default function Hero() {
                   
                   <motion.p 
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
+                    animate="visible"
                     variants={{
                       visible: {
                         transition: {
                           staggerChildren: 0.05,
-                          delayChildren: 0.8
+                          delayChildren: 3
                         }
                       }
                     }}
-                    className="text-white/80 text-xl md:text-2xl leading-relaxed text-center lg:text-left font-light flex flex-wrap gap-x-[0.3em]"
+                    className="text-white/80 text-base md:text-2xl leading-relaxed text-center lg:text-left font-light flex flex-wrap gap-x-[0.3em]"
                   >
-                    {"India's premiere cinematic production studio since 2016. High-velocity storytelling for Sports, Corporate, and Social Impact.".split(" ").map((word, i) => (
+                    {"Global video production studio since 2016. Meaningful storytelling for Sport, Social Impact, Brands & Corporates.".split(" ").map((word, i) => (
                       <motion.span
                         key={i}
                         variants={{
@@ -151,40 +139,16 @@ export default function Hero() {
 
 
 
-                <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-end gap-6 sm:gap-8 w-full lg:w-auto mt-8 lg:mt-0">
-                  <div 
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                    className="relative w-full sm:w-auto"
-                  >
-                    <a
-                      href="#contact"
-                      className="relative z-10 flex items-center justify-center gap-4 bg-primary text-background px-8 md:px-12 py-5 md:py-6 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(241,111,36,0.3)] w-full sm:w-auto"
-                    >
-                      Start Production
-                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
-                    </a>
-                    {isHovered && (
-                      <div className="absolute -inset-4 bg-primary/20 blur-2xl rounded-full -z-0" />
-                    )}
-                  </div>
-                  
+                <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-end gap-6 sm:gap-8 w-full lg:w-auto mt-6 lg:mt-0">
                   <a
-                    href="#work"
+                    href="#services"
                     className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-accent transition-colors"
                   >
-                    <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:scale-110 transition-all duration-500">
+                    <div className="w-[44px] h-[44px] md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:scale-110 transition-all duration-500">
                       <Play size={14} className="fill-current" />
                     </div>
                     Our Work
                   </a>
-                  <div className="hidden xl:flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl backdrop-blur-xl">
-
-                    <div className="flex flex-col">
-                      <span className="text-[8px] uppercase tracking-widest text-primary font-bold mb-1">UK Partner Studio</span>
-                      <span className="font-serif text-lg text-white leading-none tracking-tight">Barn Media <span className="text-primary italic">UK</span></span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

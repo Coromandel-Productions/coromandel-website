@@ -46,7 +46,7 @@ export default function Services() {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
     <section ref={targetRef} id="services" className="relative h-auto md:h-[400vh] bg-background">
@@ -61,15 +61,15 @@ export default function Services() {
               viewport={{ once: true }}
               className="text-[10px] uppercase tracking-[0.6em] text-primary font-bold mb-8"
             >
-              Our Capabilities
+              Selected Works
             </motion.div>
-            <h2 className="font-serif text-6xl md:text-8xl lg:text-[10rem] text-foreground tracking-tighter leading-[0.85] mb-12">
-              DYNAMIC <br />
-              <span className="italic text-accent">CRAFT.</span>
+            <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-foreground tracking-tighter leading-[0.85] mb-12">
+              STORIES <br />
+              <span className="italic text-accent">THAT MOVE.</span>
             </h2>
             <p className="text-muted text-xl leading-relaxed max-w-xl font-light mb-12">
-              We leverage a decade of experience and global reach to add value wherever the story leads.
-              From action-packed sports to intimate impact stories.
+              We leverage a decade of experience and global reach to elevate your stories visually. 
+              From action-packed sports content to impactful human narratives, we do it all.
             </p>
 
             {/* Scroll Navigation Cue - Hidden on Mobile since it's a vertical scroll */}
@@ -94,35 +94,6 @@ export default function Services() {
               </div>
             </motion.div>
 
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              className="w-48 h-48 relative group cursor-pointer"
-            >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0"
-              >
-                <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
-                  <defs>
-                    <path
-                      id="circlePath"
-                      d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
-                    />
-                  </defs>
-                  <text className="text-[6.5px] uppercase tracking-[0.3em] font-black fill-primary/30 group-hover:fill-primary transition-colors duration-700">
-                    <textPath href="#circlePath">
-                      TRUTH BEYOND THE LENS • ESTABLISHED 2016 •
-                    </textPath>
-                  </text>
-                </svg>
-              </motion.div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 rounded-full border border-white/5 flex items-center justify-center backdrop-blur-sm group-hover:border-primary/20 transition-colors duration-700">
-                  <ArrowUpRight className="text-accent group-hover:text-primary transition-all duration-700 group-hover:scale-110" size={32} />
-                </div>
-              </div>
-            </motion.div>
           </div>
 
           {/* Service Cards */}
@@ -130,19 +101,6 @@ export default function Services() {
             <ServiceCard key={service.title} service={service} index={index} />
           ))}
 
-          {/* Final CTA Card */}
-          <div className="w-full md:min-w-[80vw] h-[60vh] md:h-[70vh] bg-primary/90 flex flex-col items-center justify-center p-8 md:p-24 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.1),transparent)] group-hover:scale-150 transition-transform duration-1000" />
-            <h3 className="font-serif text-6xl md:text-[8rem] text-background tracking-tighter leading-none text-center relative z-10 mb-12">
-              HAVE A DIFFERENT <br /> <span className="italic">VISION?</span>
-            </h3>
-            <p className="text-xl md:text-2xl text-background/80 max-w-xl text-center font-medium relative z-10 mb-12">
-              We handle bespoke productions for agencies and brands worldwide.
-            </p>
-            <a href="#contact" className="relative z-10 px-10 md:px-16 py-6 md:py-8 bg-background text-primary rounded-full text-[10px] md:text-sm font-black uppercase tracking-[0.3em] hover:scale-105 active:scale-95 transition-all shadow-2xl">
-              Discuss Project
-            </a>
-          </div>
         </motion.div>
 
         {/* Progress Indicator + Panel Counter (Desktop Only) */}
@@ -153,14 +111,6 @@ export default function Services() {
               className="h-full w-full bg-primary origin-left"
             />
           </div>
-          <motion.span
-            style={{
-              opacity: useTransform(scrollYProgress, [0, 0.1], [0, 1])
-            }}
-            className="text-[9px] uppercase tracking-[0.4em] text-muted font-bold shrink-0"
-          >
-            {services.length} Capabilities
-          </motion.span>
         </div>
       </div>
     </section>
@@ -176,7 +126,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => router.push(service.href)}
-      className="relative w-full md:min-w-[80vw] h-[60vh] md:h-[70vh] bg-black rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden group cursor-pointer flex flex-col md:flex-row shadow-2xl"
+      className="relative w-full md:min-w-[80vw] min-h-[420px] md:h-[70vh] bg-black rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden group cursor-pointer flex flex-col md:flex-row shadow-2xl"
     >
       {/* Background Image/Video Parallax */}
       <div className="absolute inset-0 z-0">
@@ -208,7 +158,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
         <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
       </div>
 
-      <div className="relative z-10 flex flex-col justify-end p-8 md:p-20 w-full md:w-1/2 h-full md:h-auto">
+      <div className="relative z-10 flex flex-col justify-end p-6 md:p-20 w-full md:w-1/2 h-full md:h-auto">
         <span className="text-[10px] uppercase tracking-[0.5em] text-primary mb-4 md:mb-6 block font-bold">
           {service.category}
         </span>
@@ -218,7 +168,8 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
         <p className="text-lg md:text-xl text-white/70 group-hover:text-white transition-colors duration-700 leading-relaxed font-light mb-8">
           {service.description}
         </p>
-        <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+        {/* CTA arrow — visible on mobile always, hover-only on desktop */}
+        <div className="flex items-center gap-3 md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0 transition-all duration-500">
           <span className="text-[9px] uppercase tracking-[0.4em] text-primary font-black">View Work</span>
           <ArrowRight size={14} className="text-primary" />
         </div>

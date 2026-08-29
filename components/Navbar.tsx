@@ -47,17 +47,18 @@ export default function Navbar() {
             : "bg-transparent border-transparent"
         }`}>
           {/* Logo Section */}
-          <Link href="/" className="flex items-center gap-6 group cursor-pointer">
-            <div className="relative w-32 h-12 transition-transform duration-500 group-hover:scale-105">
+          <Link href="/" className="flex items-center gap-3 group cursor-pointer">
+            <div className="relative w-10 h-10 transition-transform duration-500 group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Coromandel Productions"
                 fill
+                sizes="40px"
                 className="object-contain"
                 priority
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col justify-center">
               <span className="font-serif text-xl tracking-tighter leading-none text-foreground group-hover:text-primary transition-colors">
                 COROMANDEL
               </span>
@@ -68,7 +69,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-12">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -81,21 +82,13 @@ export default function Navbar() {
             ))}
             
             <ThemeToggle />
-
-            <Link
-              href="/#contact"
-              className="relative px-8 py-3 bg-foreground text-background rounded-full text-[10px] font-bold uppercase tracking-[0.3em] overflow-hidden group"
-            >
-              <span className="relative z-10 transition-colors group-hover:text-background">Start Production</span>
-              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-            </Link>
           </div>
 
           {/* Mobile Toggle */}
           <div className="flex items-center gap-4 lg:hidden">
             <ThemeToggle />
             <button
-              className="text-foreground p-2 -mr-2 rounded-full hover:bg-white/5 transition-colors"
+              className="text-foreground p-3 -mr-3 rounded-full hover:bg-white/5 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-expanded={isMobileMenuOpen}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -119,16 +112,17 @@ export default function Navbar() {
             className="fixed inset-0 h-[100dvh] bg-background/95 backdrop-blur-3xl z-50 flex flex-col p-8 md:p-12 lg:hidden overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-16 md:mb-20">
-              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-4">
-                <div className="relative w-24 h-10">
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3">
+                <div className="relative w-10 h-10">
                   <Image
                     src="/logo.png"
                     alt="Coromandel"
                     fill
+                    sizes="40px"
                     className="object-contain"
                   />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col justify-center">
                   <span className="font-serif text-lg tracking-tighter leading-none text-foreground">
                     COROMANDEL
                   </span>

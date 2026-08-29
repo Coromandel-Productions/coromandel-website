@@ -313,25 +313,25 @@ export const categoryMeta: Record<string, { label: string; tagline: string; desc
   sports: {
     label: "Sports Features",
     tagline: "ACTION & VELOCITY",
-    description: "Capturing the intensity, triumph, and soul of competition with top-tier cinematography.",
+    description: "Capturing the intensity and heart in sporting narratives beyond the ordinary.",
     color: "#f16f24",
   },
   corporate: {
     label: "Corporate Identity",
     tagline: "BRAND & IDENTITY",
-    description: "Elevating brand narrative through cinematic storytelling that connects with modern audiences.",
+    description: "Elevating corporate brand identity through cinematic storytelling that resonates with modern audiences.",
     color: "#f16f24",
   },
   "human-interest": {
     label: "Human Interest",
     tagline: "HEART & HUMANITY",
-    description: "Films from the heart — stories of resilience, compassion, and the human spirit that move people to act.",
+    description: "Stories from the heart - films of resilience, compassion and the triumph of the human spirit.",
     color: "#f16f24",
   },
   documentaries: {
     label: "Documentaries",
     tagline: "NARRATIVE & TRUTH",
-    description: "In-depth, unscripted narratives that explore the human condition beyond the lens.",
+    description: "In-depth, unscripted and impactful long-form content built on fascinating storylines.",
     color: "#f16f24",
   },
   originals: {
