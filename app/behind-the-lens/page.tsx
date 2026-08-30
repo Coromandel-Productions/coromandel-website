@@ -27,7 +27,6 @@ const coreTeamPhotos = [
 ];
 
 const btsImages = [
-  "/Coromandel x Lune/07_BTS_Images/bts-5.jpg",
   "/Coromandel x Lune/07_BTS_Images/bts-2.jpg",
   "/Coromandel x Lune/07_BTS_Images/bts-10.jpg",
   "/Coromandel x Lune/07_BTS_Images/bts-1.jpg",
