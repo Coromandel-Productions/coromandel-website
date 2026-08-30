@@ -94,8 +94,8 @@ export default function Hero() {
               </h1>
 
 
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 mt-8 md:mt-12 w-full">
-                <div className="flex items-start gap-8 max-w-xl">
+              <div className="flex w-full mt-8 md:mt-12">
+                <div className="flex items-start gap-4 md:gap-8 max-w-xl mx-auto lg:mx-0">
                   {/* Architectural Anchor Line */}
                   <motion.div 
                     initial={{ scaleY: 0 }}
@@ -105,50 +105,54 @@ export default function Hero() {
                     className="w-px bg-gradient-to-b from-primary via-primary/50 to-transparent self-stretch hidden md:block origin-top" 
                   />
                   
-                  <motion.p 
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                      visible: {
-                        transition: {
-                          staggerChildren: 0.05,
-                          delayChildren: 3
+                  <div className="flex flex-col items-center lg:items-start gap-8">
+                    <motion.p 
+                      initial="hidden"
+                      animate="visible"
+                      variants={{
+                        visible: {
+                          transition: {
+                            staggerChildren: 0.05,
+                            delayChildren: 3
+                          }
                         }
-                      }
-                    }}
-                    className="text-white/80 text-base md:text-2xl leading-relaxed text-center lg:text-left font-light flex flex-wrap gap-x-[0.3em]"
-                  >
-                    {"Global video production studio since 2016. Meaningful storytelling for Sport, Social Impact, Brands & Corporates.".split(" ").map((word, i) => (
-                      <motion.span
-                        key={i}
-                        variants={{
-                          hidden: { opacity: 0, y: 10, filter: "blur(4px)" },
-                          visible: { opacity: 1, y: 0, filter: "blur(0px)" }
-                        }}
-                        transition={{ 
-                          duration: 0.8, 
-                          ease: [0.16, 1, 0.3, 1]
-                        }}
-                        className="inline-block"
+                      }}
+                      className="text-white/80 text-base md:text-2xl leading-relaxed text-center lg:text-left font-light flex flex-wrap gap-x-[0.3em] justify-center lg:justify-start"
+                    >
+                      {"Global video production studio since 2016. Meaningful storytelling for Sport, Social Impact, Brands & Corporates.".split(" ").map((word, i) => (
+                        <motion.span
+                          key={i}
+                          variants={{
+                            hidden: { opacity: 0, y: 10, filter: "blur(4px)" },
+                            visible: { opacity: 1, y: 0, filter: "blur(0px)" }
+                          }}
+                          transition={{ 
+                            duration: 0.8, 
+                            ease: [0.16, 1, 0.3, 1]
+                          }}
+                          className="inline-block"
+                        >
+                          {word}
+                        </motion.span>
+                      ))}
+                    </motion.p>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, delay: 3.5 }}
+                    >
+                      <a
+                        href="#services"
+                        className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
                       >
-                        {word}
-                      </motion.span>
-                    ))}
-                  </motion.p>
-                </div>
-
-
-
-                <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-end gap-6 sm:gap-8 w-full lg:w-auto mt-6 lg:mt-0">
-                  <a
-                    href="#services"
-                    className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-accent transition-colors"
-                  >
-                    <div className="w-[44px] h-[44px] md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:scale-110 transition-all duration-500">
-                      <Play size={14} className="fill-current" />
-                    </div>
-                    Our Work
-                  </a>
+                        <div className="w-[44px] h-[44px] md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:border-primary group-hover:scale-110 transition-all duration-500 bg-white/5 backdrop-blur-sm">
+                          <Play size={14} className="fill-current" />
+                        </div>
+                        Our Work
+                      </a>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -158,7 +162,7 @@ export default function Hero() {
         {/* Initial Scroll Hint */}
         <motion.div 
           style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-30"
+          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-4 z-30"
         >
           <span className="text-[9px] uppercase tracking-[0.5em] text-white/40 font-bold mb-4">Discover Legacy</span>
           <div className="relative w-[1px] h-24 bg-gradient-to-b from-primary to-transparent overflow-hidden">

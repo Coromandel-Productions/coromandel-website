@@ -14,9 +14,10 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link 
               href="/" 
-              className="font-serif text-3xl font-bold tracking-tight text-foreground block mb-6"
+              className="font-serif text-3xl font-bold tracking-tight text-foreground mb-6 flex flex-wrap items-baseline gap-x-2"
             >
-              COROMANDEL<span className="text-primary italic ml-1">PRODUCTIONS</span>
+              <span>COROMANDEL</span>
+              <span className="text-primary italic">PRODUCTIONS</span>
             </Link>
             <p className="font-serif text-lg text-primary italic mb-8">
               Stories from the heart. Beyond the lens.
