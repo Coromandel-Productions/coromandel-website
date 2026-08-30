@@ -49,7 +49,7 @@ export default function Services() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
-    <section ref={targetRef} id="services" className="relative h-auto md:h-[400vh] bg-background">
+    <section ref={targetRef} id="works" className="relative h-auto md:h-[400vh] bg-background">
       <div className="md:sticky md:top-0 flex md:h-screen md:items-center overflow-hidden">
         {/* Moving Content - horizontal on desktop, vertical on mobile */}
         <motion.div style={{ x }} className="flex flex-col md:flex-row gap-12 md:gap-24 px-6 md:px-24 items-center max-md:!transform-none max-md:w-full py-24 md:py-0 will-change-transform">

@@ -56,7 +56,7 @@ export default function Hero() {
           transition={{ duration: 1.5, delay: 2, ease: [0.16, 1, 0.3, 1] }}
           className="container mx-auto px-6 relative z-20 h-full flex flex-col justify-center pt-20"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-[-10vh]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-[4vh] lg:mt-[8vh]">
             <div className="lg:col-span-12 text-center lg:text-left">
               <div className="inline-flex items-center gap-3 mb-6 md:mb-10 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />

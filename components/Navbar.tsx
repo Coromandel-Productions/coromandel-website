@@ -46,7 +46,8 @@ export default function Navbar() {
             ? "bg-background/80 backdrop-blur-2xl border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)]" 
             : "bg-transparent border-transparent"
         }`}>
-          {/* Logo Section */}
+          {/* Logo Section (Left) */}
+          <div className="flex-1 flex items-center">
           <Link href="/" className="flex items-center gap-3 group cursor-pointer">
             <div className="relative w-10 h-10 transition-transform duration-500 group-hover:scale-105">
               <Image
@@ -67,34 +68,39 @@ export default function Navbar() {
               </span>
             </div>
           </Link>
+          </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Desktop Nav (Center) */}
+          <div className="hidden lg:flex flex-1 items-center justify-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative text-[10px] font-bold uppercase tracking-[0.4em] text-foreground/50 hover:text-primary transition-colors group"
+                className="relative text-[10px] font-bold uppercase tracking-[0.4em] text-foreground/50 hover:text-primary transition-colors group whitespace-nowrap"
               >
                 {link.name}
                 <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
               </Link>
             ))}
-            
-            <ThemeToggle />
           </div>
 
-          {/* Mobile Toggle */}
-          <div className="flex items-center gap-4 lg:hidden">
-            <button
-              className="text-foreground p-3 -mr-3 rounded-full hover:bg-white/5 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-expanded={isMobileMenuOpen}
-              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-              aria-controls="mobile-menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+          {/* Right Section (Theme Toggle + Mobile Menu) */}
+          <div className="flex-1 flex items-center justify-end gap-4">
+            <div className="hidden lg:block">
+              <ThemeToggle />
+            </div>
+            
+            <div className="lg:hidden">
+              <button
+                className="text-foreground p-3 -mr-3 rounded-full hover:bg-white/5 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-expanded={isMobileMenuOpen}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-controls="mobile-menu"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
