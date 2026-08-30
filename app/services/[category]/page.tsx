@@ -41,13 +41,13 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
             className="mb-16 md:mb-24 inline-block"
           >
             <Link
-              href="/#services"
+              href="/#works"
               className="group inline-flex items-center gap-3 text-muted hover:text-primary transition-colors py-2"
             >
               <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-all">
                 <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
               </div>
-              <span className="text-[10px] uppercase tracking-[0.4em] font-bold mt-0.5">Back to Capabilities</span>
+              <span className="text-[10px] uppercase tracking-[0.4em] font-bold mt-0.5">Back to Selected Works</span>
             </Link>
           </motion.div>
 
@@ -102,6 +102,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowFullScreen
+                    loading="lazy"
                   />
                 </div>
                 <VideoInfo project={hero} tagline={meta.tagline} featured />
@@ -126,6 +127,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
                       frameBorder="0"
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
+                      loading="lazy"
                     />
                   </div>
                   <VideoInfo project={project} tagline={meta.tagline} />

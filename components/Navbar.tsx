@@ -59,7 +59,7 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <div className="flex flex-col justify-center">
+            <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center justify-center lg:static lg:translate-x-0 lg:items-start">
               <span className="font-serif text-xl tracking-tighter leading-none text-foreground group-hover:text-primary transition-colors">
                 COROMANDEL
               </span>
@@ -116,7 +116,7 @@ export default function Navbar() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 h-[100dvh] bg-background/95 backdrop-blur-3xl z-50 flex flex-col p-8 md:p-12 lg:hidden overflow-y-auto"
           >
-            <div className="flex justify-between items-center mb-16 md:mb-20">
+            <div className="relative flex justify-between items-center mb-12">
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3">
                 <div className="relative w-10 h-10">
                   <Image
@@ -127,11 +127,11 @@ export default function Navbar() {
                     className="object-contain"
                   />
                 </div>
-                <div className="flex flex-col justify-center">
+                <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center justify-center">
                   <span className="font-serif text-lg tracking-tighter leading-none text-foreground">
                     COROMANDEL
                   </span>
-                  <span className="text-[7px] uppercase tracking-[0.4em] text-muted font-black">
+                  <span className="text-[7px] uppercase tracking-[0.4em] text-muted font-black mt-1">
                     PRODUCTIONS
                   </span>
                 </div>
@@ -148,18 +148,19 @@ export default function Navbar() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-10">
+            <div className="flex-1 flex flex-col justify-center gap-12 sm:gap-16 pb-12">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
+                  className="text-center"
                 >
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-serif text-6xl font-bold tracking-tighter hover:text-primary transition-colors italic block"
+                    className="font-serif text-[clamp(2.5rem,10vw,4rem)] font-bold tracking-tighter hover:text-primary transition-colors italic inline-block"
                   >
                     {link.name}
                   </Link>
@@ -167,12 +168,8 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="mt-auto pt-10 border-t border-white/10">
-              <div className="flex items-center gap-4 text-foreground/50 mb-6">
-                <Globe size={16} />
-                <span className="text-xs uppercase tracking-widest">Global HQ — Singapore</span>
-              </div>
-              <p className="font-serif text-xl italic text-foreground/80">"Stories from the heart. Beyond the lens."</p>
+            <div className="mt-auto pt-8 border-t border-white/10 flex justify-center">
+              <p className="font-serif text-lg sm:text-xl italic text-foreground/80 text-center">"Stories from the heart. Beyond the lens."</p>
             </div>
           </motion.div>
         )}

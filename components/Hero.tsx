@@ -143,7 +143,7 @@ export default function Hero() {
                       transition={{ duration: 1, delay: 3.5 }}
                     >
                       <a
-                        href="#services"
+                        href="#works"
                         className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
                       >
                         <div className="w-[44px] h-[44px] md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:border-primary group-hover:scale-110 transition-all duration-500 bg-white/5 backdrop-blur-sm">

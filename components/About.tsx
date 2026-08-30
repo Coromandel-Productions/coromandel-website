@@ -141,23 +141,23 @@ export default function About() {
 
               {/* Stat chips */}
               <motion.div
-                className="flex flex-wrap gap-4 mt-12"
+                className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 mt-12"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 {[
-                  { value: "10", label: "YEARS" },
-                  { value: "6", label: "CONTINENTS" },
-                  { value: "100+", label: "PRODUCTIONS" },
+                  { value: "10", label: "YEARS", span: "" },
+                  { value: "6", label: "CONTINENTS", span: "" },
+                  { value: "100+", label: "PRODUCTIONS", span: "col-span-2 sm:col-span-1" },
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="flex-1 min-w-[90px] px-6 py-5 border border-border rounded-2xl bg-surface-2 text-center"
+                    className={`flex flex-col items-center justify-center px-2 py-6 md:px-6 md:py-5 border border-border rounded-2xl bg-surface-2 text-center ${stat.span}`}
                   >
-                    <p className="font-serif text-3xl text-primary tracking-tighter leading-none mb-1">{stat.value}</p>
-                    <p className="text-[9px] uppercase tracking-[0.4em] text-muted font-bold">{stat.label}</p>
+                    <p className="font-serif text-3xl md:text-4xl text-primary tracking-tighter leading-none mb-2">{stat.value}</p>
+                    <p className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-[0.4em] text-muted font-bold w-full truncate px-1">{stat.label}</p>
                   </div>
                 ))}
               </motion.div>
