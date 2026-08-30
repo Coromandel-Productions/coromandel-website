@@ -187,9 +187,11 @@ export default function Contact() {
                       disabled={isSubmitting}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full bg-primary text-background py-8 rounded-full text-[12px] font-black uppercase tracking-[0.5em] hover:bg-accent transition-all duration-700 flex items-center justify-center gap-6 shadow-[0_0_40px_rgba(241,111,36,0.3)] hover:shadow-[0_0_40px_rgba(240,195,83,0.3)] disabled:opacity-50"
+                      className="w-full bg-primary text-background py-5 md:py-6 rounded-full text-[12px] font-black hover:bg-accent transition-all duration-700 flex items-center justify-center gap-4 shadow-[0_0_40px_rgba(241,111,36,0.3)] hover:shadow-[0_0_40px_rgba(240,195,83,0.3)] disabled:opacity-50"
                     >
-                      {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                      <span className="uppercase tracking-[0.5em] pl-[0.5em] leading-none pt-[2px]">
+                        {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                      </span>
                       <Send size={18} className={isSubmitting ? "animate-pulse" : "animate-[bounce_2s_infinite]"} />
                     </motion.button>
                   </motion.form>

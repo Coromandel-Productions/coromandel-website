@@ -86,7 +86,6 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <div className="flex items-center gap-4 lg:hidden">
-            <ThemeToggle />
             <button
               className="text-foreground p-3 -mr-3 rounded-full hover:bg-white/5 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -131,13 +130,16 @@ export default function Navbar() {
                   </span>
                 </div>
               </Link>
-              <button 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 -mr-2 rounded-full hover:bg-white/5 transition-colors"
-                aria-label="Close menu"
-              >
-                <X size={32} className="text-foreground" />
-              </button>
+              <div className="flex items-center gap-6">
+                <ThemeToggle />
+                <button 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 -mr-2 rounded-full hover:bg-white/5 transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X size={32} className="text-foreground" />
+                </button>
+              </div>
             </div>
 
             <div className="flex flex-col gap-10">

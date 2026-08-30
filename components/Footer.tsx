@@ -96,8 +96,9 @@ export default function Footer() {
         </div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted">
-            &copy; {currentYear} Coromandel Productions. All Cinematic Rights Reserved.
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted text-center md:text-left">
+            &copy; {currentYear} Coromandel Productions. <br /> 
+            All Cinematic Rights Reserved.
           </p>
           <div className="flex flex-col md:flex-row items-center gap-4">
              <span className="text-[10px] uppercase tracking-[0.3em] text-muted decoration-primary underline underline-offset-4">Singapore · Chennai</span>

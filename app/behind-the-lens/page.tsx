@@ -15,10 +15,13 @@ const coreTeamNames = [
 
 const coreTeamPhotos = [
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/Copy of PHOTO-2022-11-14-18-04-33.jpg",
+  "/Coromandel x Lune/07_BTS_Images/Core Team Photos/core-bts-2.jpg",
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/PHOTO-2023-04-04-09-45-24.jpg",
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/PHOTO-2023-09-23-18-45-47.jpg",
+  "/Coromandel x Lune/07_BTS_Images/Core Team Photos/core-bts-3.jpg",
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/PHOTO-2023-11-19-12-32-44.jpg",
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/PHOTO-2025-11-26-20-10-49.jpg",
+  "/Coromandel x Lune/07_BTS_Images/Core Team Photos/core-bts-1.jpg",
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/PHOTO-2026-04-21-18-36-49.jpg",
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/PHOTO-2026-06-20-08-46-54.jpg",
 ];
