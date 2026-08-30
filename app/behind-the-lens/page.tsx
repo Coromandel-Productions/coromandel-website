@@ -209,7 +209,7 @@ export default function BehindTheLens() {
                 <img 
                   src={src} 
                   alt="Life on Set" 
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale hover:grayscale-0" 
+                  className="w-full h-auto object-cover transition-all duration-700 md:group-hover:scale-105 filter grayscale hover:grayscale-0 active:grayscale-0 active:scale-[0.98]" 
                   loading="lazy"
                 />
               </motion.div>
