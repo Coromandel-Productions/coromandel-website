@@ -27,12 +27,13 @@ export default function TrustBar() {
       </div>
 
       <div className="relative flex group">
-        <div className="animate-marquee flex whitespace-nowrap items-center hover:pause-animation group/track">
-          {/* Duplicate the array a few times to ensure seamless infinite scroll */}
-          {[...partners, ...partners, ...partners, ...partners, ...partners].map((partner, i) => (
+        <div className="animate-marquee flex w-max items-center hover:pause-animation group/track" style={{ willChange: "transform" }}>
+          {/* Duplicate the array exactly 4 times (even number) to ensure seamless infinite scroll at -50% translation */}
+          {[...partners, ...partners, ...partners, ...partners].map((partner, i) => (
             <div 
               key={i} 
               className="mx-12 lg:mx-20 flex items-center justify-center cursor-pointer min-w-[120px] group/logo relative"
+              style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}
             >
               {/* Tooltip */}
               <div className="absolute -top-14 left-1/2 -translate-x-1/2 opacity-0 translate-y-4 scale-95 group-hover/logo:opacity-100 group-hover/logo:translate-y-0 group-hover/logo:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none z-50">
@@ -49,8 +50,10 @@ export default function TrustBar() {
                   src={partner.logo}
                   alt={partner.name}
                   fill
+                  priority={true}
                   sizes="(max-width: 768px) 120px, 120px"
                   className="object-contain transition-all duration-500 opacity-70 group-hover/track:opacity-20 group-hover/logo:!opacity-100"
+                  style={{ backfaceVisibility: "hidden", transform: "translateZ(0)", WebkitFontSmoothing: "antialiased" }}
                 />
               </div>
             </div>
@@ -64,8 +67,8 @@ export default function TrustBar() {
 
       <style jsx>{`
         @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
         .animate-marquee {
           animation: marquee 60s linear infinite;

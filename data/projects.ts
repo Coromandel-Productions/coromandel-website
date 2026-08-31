@@ -325,7 +325,7 @@ export const categoryMeta: Record<string, { label: string; tagline: string; desc
   "human-interest": {
     label: "Human Interest",
     tagline: "HEART & HUMANITY",
-    description: "Stories from the heart - films of resilience, compassion and the triumph of the human spirit.",
+    description: "Stories from the heart, films of resilience, compassion and the triumph of the human spirit.",
     color: "#f16f24",
   },
   documentaries: {

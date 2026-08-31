@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 const services = [
   {
     title: "Sports Features",
-    description: "Capturing the intensity, triumph, and soul of competition with top-tier cinematography.",
+    description: "Capturing the intensity and heart in sporting narratives beyond the ordinary.",
     icon: Trophy,
     category: "01 // ACTION",
     video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Sport.mp4",
@@ -16,7 +16,7 @@ const services = [
   },
   {
     title: "Corporate Identity",
-    description: "Elevating brand identity through cinematic storytelling that connects with modern audiences.",
+    description: "Elevating corporate brand identity through cinematic storytelling that resonates with modern audiences.",
     icon: Building2,
     category: "02 // IDENTITY",
     video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Corporate.mp4",
@@ -24,7 +24,7 @@ const services = [
   },
   {
     title: "Human Interest",
-    description: "Films from the heart — stories of resilience, compassion, and the remarkable breadth of the human experience.",
+    description: "Stories from the heart, films of resilience, compassion and the triumph of the human spirit.",
     icon: Heart,
     category: "03 // HUMANITY",
     video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Human%20Interest.mp4",
@@ -32,7 +32,7 @@ const services = [
   },
   {
     title: "Documentaries",
-    description: "In-depth, unscripted narratives that explore the human condition beyond the lens.",
+    description: "In-depth, unscripted and impactful long-form content built on fascinating storylines.",
     icon: Film,
     category: "04 // NARRATIVE",
     video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Documentary.mp4",
@@ -64,8 +64,8 @@ export default function Services() {
               Selected Works
             </motion.div>
             <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-foreground tracking-tighter leading-[0.85] mb-12">
-              STORIES <br />
-              <span className="italic text-accent">THAT MOVE.</span>
+              DYNAMIC <br />
+              <span className="italic text-accent">CRAFT.</span>
             </h2>
             <p className="text-muted text-xl leading-relaxed max-w-xl font-light mb-12">
               We leverage a decade of experience and global reach to elevate your stories visually. 

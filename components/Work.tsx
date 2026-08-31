@@ -37,13 +37,14 @@ export default function Work() {
               Our Work
             </motion.div>
             <h2 className="font-serif text-6xl md:text-8xl lg:text-[10rem] text-foreground tracking-tighter leading-[0.85] mb-8">
-              THE <br />
-              <span className="italic text-primary">ARCHIVES.</span>
+              DYNAMIC <br />
+              <span className="italic text-primary">CRAFT.</span>
             </h2>
           </div>
-          <p className="text-muted text-xl leading-relaxed max-w-sm font-light mb-4">
-            Cinematic narratives for global brands and human stories. Each frame curated for maximum impact.
-          </p>
+          <div className="flex flex-col gap-4 text-muted text-xl leading-relaxed max-w-sm font-light mb-4">
+            <p>We leverage a decade of experience and global reach to elevate your stories visually.</p>
+            <p>From action-packed sports content to impactful human narratives, we do it all.</p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
