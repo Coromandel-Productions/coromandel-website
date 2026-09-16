@@ -54,6 +54,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import SmoothScroll from "@/components/SmoothScroll";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({
   children,
@@ -68,6 +69,7 @@ export default function RootLayout({
       <body className={`${jost.className} min-h-full flex flex-col bg-background text-foreground transition-colors duration-500`}>
         <ThemeProvider>
           <SmoothScroll>{children}</SmoothScroll>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

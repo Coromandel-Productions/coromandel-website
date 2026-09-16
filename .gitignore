@@ -65,3 +65,6 @@ public/Coromandel x Lune/04_Showreels/Video Thumbnails/*
 !public/Coromandel x Lune/04_Showreels/Video Thumbnails/Documentary.mp4
 !public/Coromandel x Lune/04_Showreels/Video Thumbnails/Human Interest.mp4
 !public/Coromandel x Lune/04_Showreels/Video Thumbnails/Sport.mp4
+
+# temporary browser data
+.chrome_temp/
