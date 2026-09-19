@@ -38,12 +38,24 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call to send to contactEmail
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const subject = `New Project Enquiry from ${formData.name}`;
+    const categoriesStr = formData.categories.length > 0 ? formData.categories.join(", ") : "None specified";
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\nProject Types: ${categoriesStr}\n\nProject Details:\n${formData.message}`;
     
-    console.log(`Enquiry sent to ${settings.contactEmail}:`, formData);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    window.location.href = `mailto:${settings.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Short delay to allow the mail client to open before showing the success state
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+        categories: []
+      });
+    }, 500);
   };
 
   const toggleCategory = (cat: string) => {
@@ -145,34 +157,34 @@ export default function Contact() {
                     onSubmit={handleSubmit}
                     className="space-y-12 relative z-10"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                      <div className="space-y-4">
-                        <label className="text-[10px] uppercase tracking-[0.5em] text-primary font-black">Full Name</label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                      <div className="space-y-2">
+                        <label className="block text-[10px] uppercase tracking-[0.5em] text-primary font-black ml-1 mb-6">Full Name</label>
                         <input 
                           required
                           type="text" 
                           placeholder="YOUR NAME" 
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full bg-transparent border-b border-border pb-6 focus:outline-none focus:border-primary transition-colors text-foreground font-serif text-2xl placeholder:text-muted/30"
+                          className="w-full bg-transparent border-b border-border pb-4 px-1 focus:outline-none focus:border-primary transition-colors text-foreground font-serif text-2xl placeholder:text-muted/30"
                         />
                       </div>
-                      <div className="space-y-4">
-                        <label className="text-[10px] uppercase tracking-[0.5em] text-primary font-black">Email Address</label>
+                      <div className="space-y-2">
+                        <label className="block text-[10px] uppercase tracking-[0.5em] text-primary font-black ml-1 mb-6">Email Address</label>
                         <input 
                           required
                           type="email" 
                           placeholder="YOUR@EMAIL.COM" 
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full bg-transparent border-b border-border pb-6 focus:outline-none focus:border-primary transition-colors text-foreground font-serif text-2xl placeholder:text-muted/30"
+                          className="w-full bg-transparent border-b border-border pb-4 px-1 focus:outline-none focus:border-primary transition-colors text-foreground font-serif text-2xl placeholder:text-muted/30"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-6">
-                      <label className="text-[10px] uppercase tracking-[0.5em] text-primary font-black">What are we building?</label>
-                      <div className="flex flex-wrap gap-4 pt-2">
+                    <div className="pt-4">
+                      <label className="block text-[10px] uppercase tracking-[0.5em] text-primary font-black ml-1 mb-8">What are we building?</label>
+                      <div className="flex flex-wrap gap-4">
                         {["Sports", "Corporate", "Social", "Doc", "Scripted"].map((cat) => (
                           <label key={cat} className="group relative cursor-pointer">
                             <input 
@@ -181,7 +193,7 @@ export default function Contact() {
                               checked={formData.categories.includes(cat)}
                               onChange={() => toggleCategory(cat)}
                             />
-                            <div className="px-6 py-3 border border-white/10 rounded-full text-[10px] uppercase tracking-widest text-muted transition-all duration-500 peer-checked:bg-primary peer-checked:text-background peer-checked:border-primary peer-checked:shadow-[0_0_20px_rgba(241,111,36,0.4)]">
+                            <div className="px-8 py-4 border border-white/10 rounded-full text-[11px] uppercase tracking-widest text-muted transition-all duration-500 group-hover:border-white/30 group-hover:bg-white/5 peer-checked:bg-primary peer-checked:text-background peer-checked:border-primary peer-checked:shadow-[0_0_20px_rgba(241,111,36,0.4)]">
                               {cat}
                             </div>
                           </label>
@@ -189,15 +201,15 @@ export default function Contact() {
                       </div>
                     </div>
 
-                    <div className="space-y-4">
-                      <label className="text-[10px] uppercase tracking-[0.5em] text-primary font-black">Tell us about your project</label>
+                    <div className="pt-4">
+                      <label className="block text-[10px] uppercase tracking-[0.5em] text-primary font-black ml-1 mb-8">Tell us about your project</label>
                       <textarea 
                         required
-                        rows={4} 
+                        rows={3} 
                         placeholder="Tell us what you're thinking..." 
                         value={formData.message}
                         onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="w-full bg-transparent border-b border-border pb-6 focus:outline-none focus:border-primary transition-colors text-foreground font-serif text-2xl placeholder:text-muted/30 resize-none"
+                        className="w-full bg-transparent border-b border-border pb-4 px-1 focus:outline-none focus:border-primary transition-colors text-foreground font-serif text-2xl md:text-3xl placeholder:text-muted/30 resize-none"
                       />
                     </div>
 
@@ -228,7 +240,7 @@ export default function Contact() {
                       MESSAGE <span className="italic text-primary">SENT.</span>
                     </h3>
                     <p className="text-muted text-xl max-w-sm mx-auto leading-relaxed">
-                      Your vision has been received. We'll be in touch with you at <span className="text-foreground font-bold">{formData.email}</span> shortly.
+                      Your message has been received. We'll be in touch with you at <span className="text-foreground font-bold">{formData.email}</span> shortly.
                     </p>
                     <button 
                       onClick={() => setIsSubmitted(false)}

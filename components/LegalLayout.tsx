@@ -21,7 +21,7 @@ export default function LegalLayout({ title, lastUpdated, children }: LegalLayou
       <main className="pt-40 pb-32">
         <div className="container mx-auto px-6 max-w-4xl">
           <Link 
-            href="/" 
+            href="/#footer" 
             className="inline-flex items-center gap-2 text-muted hover:text-primary transition-colors mb-12 text-xs uppercase tracking-widest font-bold"
           >
             <ChevronLeft size={16} />
