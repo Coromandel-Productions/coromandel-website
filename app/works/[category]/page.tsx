@@ -62,10 +62,20 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="font-serif text-7xl md:text-[10rem] text-foreground tracking-tighter leading-[0.85] mb-8"
+            className="font-serif text-7xl md:text-[10rem] text-foreground tracking-tighter leading-none mb-8"
           >
-            {meta.label.split(" ")[0]} <br />
-            <span className="italic text-primary">{meta.label.split(" ").slice(1).join(" ")}.</span>
+            {meta.label.split(" ").length > 1 ? (
+              <>
+                {meta.label.split(" ")[0]}{" "}
+                <span className="italic text-primary">
+                  {meta.label.split(" ").slice(1).join(" ")}.
+                </span>
+              </>
+            ) : (
+              <>
+                {meta.label}<span className="italic text-primary">.</span>
+              </>
+            )}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

@@ -12,7 +12,7 @@ const services = [
     icon: Trophy,
     category: "01 // ACTION",
     video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Sport.mp4",
-    href: "/services/sports",
+    href: "/works/sports",
   },
   {
     title: "Corporate Identity",
@@ -20,7 +20,7 @@ const services = [
     icon: Building2,
     category: "02 // IDENTITY",
     video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Corporate.mp4",
-    href: "/services/corporate",
+    href: "/works/corporate",
   },
   {
     title: "Human Interest Stories",
@@ -28,7 +28,7 @@ const services = [
     icon: Heart,
     category: "03 // HUMANITY",
     video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Human%20Interest.mp4",
-    href: "/services/human-interest",
+    href: "/works/human-interest",
   },
   {
     title: "Documentaries",
@@ -36,7 +36,7 @@ const services = [
     icon: Film,
     category: "04 // NARRATIVE",
     video: "/Coromandel%20x%20Lune/04_Showreels/Video%20Thumbnails/Documentary.mp4",
-    href: "/services/documentaries",
+    href: "/works/documentaries",
   }
 ];
 

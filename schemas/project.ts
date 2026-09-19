@@ -8,6 +8,12 @@ export const projectSchema = defineType({
     defineField({ name: "id", title: "ID (slug-style)", type: "string", validation: (R) => R.required() }),
     defineField({ name: "title", title: "Title", type: "string", validation: (R) => R.required() }),
     defineField({
+      name: "thumbnail",
+      title: "Thumbnail Image",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "string",
@@ -21,8 +27,9 @@ export const projectSchema = defineType({
       name: "slug",
       title: "URL Slug",
       type: "string",
+      description: "Select the category URL slug (e.g., /works/sports).",
       options: {
-        list: ["sports", "corporate", "impact-stories", "documentaries", "originals"],
+        list: ["sports", "corporate", "human-interest", "documentaries", "originals"],
       },
       validation: (R) => R.required(),
     }),

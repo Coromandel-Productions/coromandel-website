@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, MapPin, Send, Zap, ArrowUpRight } from "lucide-react";
+import { client, siteSettingsQuery } from "@/lib/sanity";
 
 export default function Contact() {
   const [hoveredInfo, setHoveredInfo] = useState<string | null>(null);
@@ -15,14 +16,32 @@ export default function Contact() {
     categories: [] as string[]
   });
 
+  const [settings, setSettings] = useState({
+    contactEmail: "contact@coromandel-productions.com",
+    address: "176, Orchard Road, SG",
+    bookingWindow: "Booking for Q4 2026. Join the ranks of global brands shaping narratives with us."
+  });
+
+  React.useEffect(() => {
+    client.fetch(siteSettingsQuery).then((data) => {
+      if (data) {
+        setSettings({
+          contactEmail: data.contactEmail || "contact@coromandel-productions.com",
+          address: data.address || "176, Orchard Road, SG",
+          bookingWindow: data.bookingWindow || "Booking for Q4 2026. Join the ranks of global brands shaping narratives with us."
+        });
+      }
+    }).catch(console.error);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call to send to contact@coromandel-productions.com
+    // Simulate API call to send to contactEmail
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    console.log("Enquiry sent to contact@coromandel-productions.com:", formData);
+    console.log(`Enquiry sent to ${settings.contactEmail}:`, formData);
     setIsSubmitting(false);
     setIsSubmitted(true);
   };
@@ -37,8 +56,8 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { id: "email", icon: Mail, label: "Email Us", value: "contact@coromandel-productions.com" },
-    { id: "location", icon: MapPin, label: "Our Studio", value: "176, Orchard Road, SG" },
+    { id: "email", icon: Mail, label: "Email Us", value: settings.contactEmail },
+    { id: "location", icon: MapPin, label: "Our Studio", value: settings.address },
   ];
 
   return (
@@ -68,7 +87,7 @@ export default function Contact() {
             </h2>
 
             <p className="text-muted text-xl mb-10 max-w-sm leading-relaxed font-light">
-              Booking for Q4 2026. Join the ranks of global brands shaping narratives with us.
+              {settings.bookingWindow}
             </p>
             <p className="text-[9px] uppercase tracking-[0.5em] text-muted font-bold mb-16">
               Prefer email for all initial enquiries.
@@ -241,7 +260,7 @@ export default function Contact() {
                 <div className="absolute bottom-4 left-4 z-20">
                   <div className="bg-surface-2/90 backdrop-blur-md px-4 py-2 rounded-full border border-border flex items-center gap-3">
                     <MapPin size={12} className="text-primary" />
-                    <span className="text-[9px] uppercase tracking-widest text-foreground/80 font-bold">176, Orchard Road, SG</span>
+                    <span className="text-[9px] uppercase tracking-widest text-foreground/80 font-bold">{settings.address}</span>
                   </div>
                 </div>
               </motion.div>

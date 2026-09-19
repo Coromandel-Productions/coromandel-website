@@ -4,6 +4,7 @@ import { visionTool } from "@sanity/vision";
 import { projectSchema } from "./schemas/project";
 import { clientBrandSchema } from "./schemas/clientBrand";
 import { siteSettingsSchema } from "./schemas/siteSettings";
+import { behindTheLensSchema } from "./schemas/behindTheLens";
 
 export default defineConfig({
   name: "coromandel",
@@ -26,11 +27,14 @@ export default defineConfig({
             S.listItem()
               .title("Site Settings")
               .child(S.document().schemaType("siteSettings").documentId("siteSettings")),
+            S.listItem()
+              .title("Behind The Lens")
+              .child(S.document().schemaType("behindTheLens").documentId("behindTheLens")),
           ]),
     }),
     visionTool(),
   ],
   schema: {
-    types: [projectSchema, clientBrandSchema, siteSettingsSchema],
+    types: [projectSchema, clientBrandSchema, siteSettingsSchema, behindTheLensSchema],
   },
 });

@@ -5,15 +5,27 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { client, behindTheLensQuery, urlFor } from "@/lib/sanity";
 
-const coreTeamNames = [
+const formatHeroTitle = (title?: string) => {
+  if (!title) return `BEYOND <br /><span class="italic text-primary/90">THE LENS.</span>`;
+  
+  // Replace *text* with styled span
+  let formatted = title.replace(/\*(.*?)\*/g, '<span class="italic text-primary/90">$1</span>');
+  // Replace newlines with <br />
+  formatted = formatted.replace(/\n/g, '<br />');
+  
+  return formatted;
+};
+
+const fallbackCoreTeamNames = [
   { name: "Veeru Murugappan", role: "Founder & Director" },
   { name: "Harsh Shah", role: "Head of Production" },
   { name: "Deeya Mirpuri", role: "Senior Producer & Editor" },
   { name: "Pranav Thimmaiah", role: "Senior Editor" },
 ];
 
-const coreTeamPhotos = [
+const fallbackCoreTeamPhotos = [
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/Copy of PHOTO-2022-11-14-18-04-33.jpg",
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/core-bts-2.jpg",
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/PHOTO-2023-04-04-09-45-24.jpg",
@@ -26,7 +38,7 @@ const coreTeamPhotos = [
   "/Coromandel x Lune/07_BTS_Images/Core Team Photos/PHOTO-2026-06-20-08-46-54.jpg",
 ];
 
-const btsImages = [
+const fallbackBtsImages = [
   "/Coromandel x Lune/07_BTS_Images/bts-2.jpg",
   "/Coromandel x Lune/07_BTS_Images/bts-10.jpg",
   "/Coromandel x Lune/07_BTS_Images/bts-1.jpg",
@@ -42,6 +54,14 @@ const btsImages = [
 ];
 
 export default function BehindTheLens() {
+  const [data, setData] = React.useState<any>(null);
+
+  React.useEffect(() => {
+    client.fetch(behindTheLensQuery).then((res) => {
+      if (res) setData(res);
+    }).catch(console.error);
+  }, []);
+
   const { scrollYProgress } = useScroll();
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
@@ -52,7 +72,7 @@ export default function BehindTheLens() {
       <section className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: yBg }} className="absolute inset-0 z-0">
           <Image
-            src="/Coromandel x Lune/07_BTS_Images/PHOTO-2022-04-19-19-29-54.jpg"
+            src={data?.heroImage ? urlFor(data.heroImage).url() : "/Coromandel x Lune/07_BTS_Images/PHOTO-2022-04-19-19-29-54.jpg"}
             alt="Behind the Lens Hero"
             fill
             className="object-cover opacity-60 mix-blend-luminosity"
@@ -70,10 +90,9 @@ export default function BehindTheLens() {
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] text-primary mb-6 block">
               The Studio
             </span>
-            <h1 className="font-serif text-5xl md:text-8xl lg:text-[10rem] font-normal leading-[0.85] text-white tracking-tighter mb-8 mix-blend-difference">
-              BEHIND <br />
-              <span className="italic text-primary/90">THE LENS.</span>
-            </h1>
+            <h1 className="font-serif text-5xl md:text-8xl lg:text-[10rem] font-normal leading-[0.85] text-white tracking-tighter mb-8 mix-blend-difference" dangerouslySetInnerHTML={{
+              __html: formatHeroTitle(data?.heroTitle)
+            }} />
           </motion.div>
         </div>
       </section>
@@ -101,12 +120,18 @@ export default function BehindTheLens() {
               transition={{ duration: 1, delay: 0.2 }}
               className="lg:col-span-7 flex flex-col gap-8 text-lg md:text-2xl text-muted font-light leading-relaxed"
             >
-              <p>
-                Coromandel Productions was born out of a desire to tell stories that matter. Based in Singapore and India for the world, we are a collective of storytellers dedicated to pushing the boundaries and delivering quality video content without compromise.
-              </p>
-              <p>
-                We believe true magic happens when raw emotion meets impeccable production value. Our teams, spread across the globe, capture and deliver authentic work that isn't just seen, but felt through our stories.
-              </p>
+              {data?.originStory ? data.originStory.split('\n').map((paragraph: string, i: number) => (
+                paragraph.trim() && <p key={i}>{paragraph}</p>
+              )) : (
+                <>
+                  <p>
+                    Coromandel Productions was born out of a desire to tell stories that matter. Based in Singapore and India for the world, we are a collective of storytellers dedicated to pushing the boundaries and delivering quality video content without compromise.
+                  </p>
+                  <p>
+                    We believe true magic happens when raw emotion meets impeccable production value. Our teams, spread across the globe, capture and deliver authentic work that isn't just seen, but felt through our stories.
+                  </p>
+                </>
+              )}
             </motion.div>
           </div>
         </div>
@@ -125,7 +150,7 @@ export default function BehindTheLens() {
           <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-24">
             {/* The Roster */}
             <div className="w-full lg:w-1/3 flex flex-col gap-8 md:gap-12">
-              {coreTeamNames.map((member, idx) => (
+              {(data?.coreTeam || fallbackCoreTeamNames).map((member: any, idx: number) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -30 }}
@@ -152,7 +177,7 @@ export default function BehindTheLens() {
                
                <div className="flex h-full animate-marquee hover:pause-animation items-center">
                  {/* Duplicate for infinite scroll */}
-                 {[...coreTeamPhotos, ...coreTeamPhotos, ...coreTeamPhotos].map((src, idx) => (
+                 {Array(3).fill(data?.coreTeamPhotos?.map((p: any) => urlFor(p).url()) || fallbackCoreTeamPhotos).flat().map((src: string, idx: number) => (
                    <div key={idx} className="relative h-[80%] min-w-[250px] md:min-w-[400px] mx-4 rounded-2xl overflow-hidden shadow-2xl">
                      <Image 
                        src={src}
@@ -197,7 +222,7 @@ export default function BehindTheLens() {
         {/* Masonry Layout */}
         <div className="container mx-auto px-6">
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6">
-            {btsImages.map((src, idx) => (
+            {(data?.btsImages?.map((p: any) => urlFor(p).url()) || fallbackBtsImages).map((src: string, idx: number) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}

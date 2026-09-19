@@ -20,6 +20,7 @@ export const projectsQuery = `*[_type == "project"] | order(year desc) {
   id,
   title,
   category,
+  thumbnail,
   slug,
   vimeoId,
   description,
@@ -41,4 +42,13 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   address,
   bookingWindow,
   heroVideoUrl
+}`;
+
+export const behindTheLensQuery = `*[_type == "behindTheLens"][0] {
+  heroImage,
+  heroTitle,
+  originStory,
+  coreTeam,
+  coreTeamPhotos,
+  btsImages
 }`;

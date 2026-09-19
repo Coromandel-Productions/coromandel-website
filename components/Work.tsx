@@ -1,15 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { projects } from "@/data/projects";
+import { projects as fallbackProjects } from "@/data/projects";
 import { Play, ArrowRight, ExternalLink, Timer, MapPin } from "lucide-react";
+import { client, projectsQuery, urlFor } from "@/lib/sanity";
 
 export default function Work() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [sanityProjects, setSanityProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    client.fetch(projectsQuery)
+      .then(data => setSanityProjects(data))
+      .catch(console.error);
+  }, []);
+
+  // Use sanity projects if available, otherwise fallback to local data
+  const activeProjects = sanityProjects.length > 0 ? sanityProjects : fallbackProjects;
 
   // Focus only on the 6 flagship projects
-  const displayProjects = projects.slice(0, 6);
+  const displayProjects = activeProjects.slice(0, 6);
 
   const getBentoClass = (index: number) => {
     const classes = [
@@ -62,7 +73,7 @@ export default function Work() {
             >
               {/* Thumbnail Image */}
               <motion.img
-                src={project.thumbnail}
+                src={project.thumbnail && typeof project.thumbnail !== 'string' ? urlFor(project.thumbnail).url() : project.thumbnail || '/Coromandel x Lune/03_Project_Thumbnails/Coromandel - Thumbnail Template (10).jpg'}
                 alt={project.title}
                 className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 group-hover:opacity-40"
               />

@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "vumbnail.com" },
       { protocol: "https", hostname: "i.vimeocdn.com" },
+      { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
   transpilePackages: ["next-sanity"],

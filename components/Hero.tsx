@@ -9,11 +9,15 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [videoUrl, setVideoUrl] = useState("/Coromandel%20x%20Lune/04_Showreels/showreel_final.mp4");
+  const [bio, setBio] = useState("Global video production studio since 2016. Meaningful storytelling for Sport, Social Impact, Brands & Corporates.");
 
   useEffect(() => {
     client.fetch(siteSettingsQuery).then((data) => {
       if (data?.heroVideoUrl) {
         setVideoUrl(data.heroVideoUrl);
+      }
+      if (data?.studioBio) {
+        setBio(data.studioBio);
       }
     }).catch(console.error);
   }, []);
@@ -130,7 +134,7 @@ export default function Hero() {
                       }}
                       className="text-white/80 text-base md:text-2xl leading-relaxed text-center lg:text-left font-light flex flex-wrap gap-x-[0.3em] justify-center lg:justify-start"
                     >
-                      {"Global video production studio since 2016. Meaningful storytelling for Sport, Social Impact, Brands & Corporates.".split(" ").map((word, i) => (
+                      {bio.split(" ").map((word, i) => (
                         <motion.span
                           key={i}
                           variants={{
