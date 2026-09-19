@@ -30,7 +30,7 @@ const hubs: Location[] = [
   },
   {
     id: "chennai",
-    name: "Chennai",
+    name: "India",
     country: "IN",
     coordinates: [80.2707, 13.0827],
     role: "India Studio",
