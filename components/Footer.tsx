@@ -96,20 +96,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-white/5 flex flex-col gap-10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-muted text-center md:text-left">
-              &copy; {currentYear} Coromandel Productions. <br className="hidden md:block" /> 
+        <div className="pt-12 border-t border-white/5 flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
+          <div className="w-full lg:w-1/3 flex justify-center lg:justify-start">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-muted text-center lg:text-left">
+              &copy; {currentYear} Coromandel Productions. <br className="hidden lg:block" /> 
               All Cinematic Rights Reserved.
             </p>
-            <div className="flex flex-col md:flex-row items-center gap-4">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-muted decoration-primary underline underline-offset-4">Singapore. Chennai. Worldwide.</span>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-muted underline underline-offset-4 decoration-primary">Barn Media</span>
-            </div>
           </div>
-
-          <div className="text-center w-full">
-             <span className="text-[9px] text-muted/30 tracking-[0.3em] uppercase font-semibold">
+          
+          <div className="w-full lg:w-1/3 flex justify-center order-last lg:order-none">
+             <span className="text-[9px] text-muted/30 tracking-[0.3em] uppercase font-semibold text-center">
                Developed by{" "}
                <a 
                  href="https://lunestudio.in" 
@@ -120,6 +116,11 @@ export default function Footer() {
                  Lune Studio
                </a>
              </span>
+          </div>
+
+          <div className="w-full lg:w-1/3 flex flex-col md:flex-row items-center justify-center lg:justify-end gap-4 text-center lg:text-right">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-muted decoration-primary underline underline-offset-4 whitespace-nowrap">Singapore. Chennai. Worldwide.</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] text-muted underline underline-offset-4 decoration-primary whitespace-nowrap">Barn Media</span>
           </div>
         </div>
 
