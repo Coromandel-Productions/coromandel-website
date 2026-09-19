@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Coromandel Productions - Website
 
-## Getting Started
+This is the front-end codebase and CMS integration for the Coromandel Productions website, built by Lune Studio.
 
-First, run the development server:
+## Technology Stack
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Styling:** Tailwind CSS + Framer Motion
+- **CMS:** [Sanity.io](https://www.sanity.io)
+- **Map:** react-simple-maps
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 1. Local Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run this project on your local machine:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. **Environment Variables:**
+   Create a `.env.local` file in the root directory (you can copy the `.env.example` file) and add your Sanity credentials:
+   ```env
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_SANITY_DATASET=production
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 2. Managing Content (Sanity CMS)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The website is connected to Sanity CMS. The Sanity Studio is embedded directly into this application.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Run the local dev server (`npm run dev`).
+2. Navigate to [http://localhost:3000/studio](http://localhost:3000/studio).
+3. Log in with your Sanity account.
+4. From here, you can manage:
+   - **Projects & Films**
+   - **Client Brands** (Logos)
+   - **Site Settings** (Global text, contact emails, and the Hero Video URL)
+
+*Note: Changes made in the CMS take effect immediately on the front-end when refreshed.*
+
+---
+
+## 3. Deploying to Vercel
+
+The easiest way to deploy this site live is through Vercel.
+
+1. Push this repository to your own GitHub account.
+2. Go to [Vercel](https://vercel.com/) and click **Add New Project**.
+3. Import the GitHub repository.
+4. **Important:** In the Vercel deployment settings, expand **Environment Variables** and add:
+   - `NEXT_PUBLIC_SANITY_PROJECT_ID` with your actual project ID.
+   - `NEXT_PUBLIC_SANITY_DATASET` set to `production`.
+5. Click **Deploy**.
+
+For future updates, any code pushed to the `main` branch will automatically trigger a new deployment. Content updates made in Sanity Studio will immediately reflect on the live site without needing a redeployment.
