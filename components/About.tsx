@@ -12,7 +12,7 @@ const images = [
     src: `${BTS_BASE}/Core Team Photos/core-team-homepage-2.jpg`,
     label: "The Core Team",
     aspect: "landscape",
-    caption: "Singapore · Chennai · London",
+    caption: "Singapore. Chennai. Worldwide.",
   },
   {
     src: `${BTS_BASE}/bts-4.jpg`,
@@ -148,7 +148,7 @@ export default function About() {
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 {[
-                  { value: "10", label: "YEARS", span: "" },
+                  { value: "10+", label: "YEARS", span: "" },
                   { value: "6", label: "CONTINENTS", span: "" },
                   { value: "100+", label: "PRODUCTIONS", span: "col-span-2 sm:col-span-1" },
                 ].map((stat) => (
@@ -192,7 +192,7 @@ export default function About() {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -z-10 group-hover:bg-primary/20 transition-colors duration-700" />
                 <p className="text-[10px] uppercase tracking-[0.5em] text-primary font-bold mb-4">THE STUDIO</p>
                 <h3 className="font-serif text-4xl md:text-5xl text-foreground tracking-tighter leading-tight mb-8">
-                  Go <span className="italic text-primary">Behind the Lens.</span>
+                  Go <span className="italic text-primary">Beyond the Lens.</span>
                 </h3>
                 <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[0.3em] text-foreground group-hover:text-primary transition-colors duration-300">
                   KNOW OUR FULL STORY

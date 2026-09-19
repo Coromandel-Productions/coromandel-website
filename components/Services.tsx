@@ -23,7 +23,7 @@ const services = [
     href: "/services/corporate",
   },
   {
-    title: "Human Interest",
+    title: "Human Interest Stories",
     description: "Stories from the heart, films of resilience, compassion and the triumph of the human spirit.",
     icon: Heart,
     category: "03 // HUMANITY",
@@ -68,7 +68,7 @@ export default function Services() {
               <span className="italic text-accent">CRAFT.</span>
             </h2>
             <p className="text-muted text-xl leading-relaxed max-w-xl font-light mb-12">
-              We leverage a decade of experience and global reach to elevate your stories visually. 
+              We leverage over a decade of experience and global reach to elevate your stories visually. 
               From action-packed sports content to impactful human narratives, we do it all.
             </p>
 

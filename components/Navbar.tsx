@@ -9,7 +9,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { name: "Services", href: "/#services" },
-  { name: "Behind the Lens", href: "/behind-the-lens" },
+  { name: "Beyond the Lens", href: "/behind-the-lens" },
   { name: "Process", href: "/#process" },
   { name: "Contact", href: "/#contact" },
 ];

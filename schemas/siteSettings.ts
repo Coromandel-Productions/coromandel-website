@@ -16,5 +16,11 @@ export const siteSettingsSchema = defineType({
       of: [{ type: "string" }],
       description: "E.g. Singapore, Chennai",
     }),
+    defineField({
+      name: "heroVideoUrl",
+      title: "Hero Background Video URL",
+      type: "string",
+      description: "URL for the main hero video (e.g. from Vimeo, AWS, or local public folder like /Coromandel%20x%20Lune/04_Showreels/showreel_final.mp4)",
+    }),
   ],
 });

@@ -42,7 +42,7 @@ export default function Work() {
             </h2>
           </div>
           <div className="flex flex-col gap-4 text-muted text-xl leading-relaxed max-w-sm font-light mb-4">
-            <p>We leverage a decade of experience and global reach to elevate your stories visually.</p>
+            <p>We leverage over a decade of experience and global reach to elevate your stories visually.</p>
             <p>From action-packed sports content to impactful human narratives, we do it all.</p>
           </div>
         </div>

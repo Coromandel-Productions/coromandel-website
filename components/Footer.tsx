@@ -65,7 +65,7 @@ export default function Footer() {
             <ul className="space-y-4">
               {[
                 { name: "Services", href: "#services" },
-                { name: "Behind The Lens", href: "/behind-the-lens" },
+                { name: "Beyond The Lens", href: "/behind-the-lens" },
                 { name: "Process", href: "#process" },
                 { name: "Contact", href: "#contact" },
               ].map((link) => (
@@ -102,7 +102,7 @@ export default function Footer() {
             All Cinematic Rights Reserved.
           </p>
           <div className="flex flex-col md:flex-row items-center gap-4">
-             <span className="text-[10px] uppercase tracking-[0.3em] text-muted decoration-primary underline underline-offset-4">Singapore · Chennai</span>
+             <span className="text-[10px] uppercase tracking-[0.3em] text-muted decoration-primary underline underline-offset-4">Singapore. Chennai. Worldwide.</span>
              <span className="text-[10px] uppercase tracking-[0.3em] text-muted underline underline-offset-4 decoration-primary">Barn Media</span>
              <span className="text-[9px] text-muted/40 tracking-[0.2em] uppercase font-semibold">Developed by <a href="https://lunestudio.in" target="_blank" rel="noopener noreferrer" className="text-primary/60 font-bold hover:text-primary transition-colors">Lune Studio</a></span>
           </div>

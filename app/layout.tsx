@@ -15,9 +15,9 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Coromandel Productions | Sports & Corporate Video Production | Singapore · Chennai",
+  title: "Coromandel Productions | Sports & Corporate Video Production | Singapore. Chennai. Worldwide.",
   description:
-    "Award-winning cinematic production studio founded in 2016. We craft sports films, corporate documentaries and social impact stories for global brands — trusted by ICC, Infosys and the World Bank. Based in Singapore and Chennai. Booking Q4 2026.",
+    "Award-winning cinematic production studio founded in 2016. We craft sports films, corporate documentaries and social impact stories for global brands — trusted by ICC, Infosys and the World Bank. Based in Singapore. Chennai. Worldwide. Booking Q4 2026.",
   keywords: [
     "video production company Chennai",
     "video production company Singapore",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Coromandel Productions — Stories Unbound",
     description:
-      "Sports films. Corporate docs. Social impact stories. Trusted by ICC, Infosys & World Bank. Based in India, Singapore & UK. Booking Q3 2026.",
+      "Sports films. Corporate docs. Social impact stories. Trusted by ICC, Infosys & World Bank. Based in Singapore. Chennai. Worldwide. Booking Q3 2026.",
     images: ["/og-image.jpg"],
   },
 };
