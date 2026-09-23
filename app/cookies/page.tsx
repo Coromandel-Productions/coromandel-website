@@ -1,4 +1,10 @@
 import LegalLayout from "@/components/LegalLayout";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cookie Policy | Coromandel Productions",
+  description: "Cookie Policy for Coromandel Productions. Learn how we use cookies to improve your experience.",
+};
 
 export default function CookiesPage() {
   return (

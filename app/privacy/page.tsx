@@ -1,4 +1,10 @@
 import LegalLayout from "@/components/LegalLayout";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Coromandel Productions",
+  description: "Privacy Policy for Coromandel Productions, outlining how we collect, use, and protect your data in Singapore and India.",
+};
 
 export default function PrivacyPage() {
   return (

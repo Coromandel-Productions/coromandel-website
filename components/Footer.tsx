@@ -115,9 +115,9 @@ export default function Footer() {
                  href="https://lunestudio.in" 
                  target="_blank" 
                  rel="noopener noreferrer" 
-                 className="text-primary/60 font-bold hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_10px_rgba(241,111,36,0.8)]"
+                 className="text-primary/60 font-bold transition-colors duration-300 hover:animate-tubelight hover:underline underline-offset-4 inline-flex items-center"
                >
-                 Lune Studio
+                 <span className="mr-[-0.3em]">Lune Studio</span>
                </a>
              </span>
           </div>

@@ -76,9 +76,9 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative text-[10px] font-bold uppercase tracking-[0.4em] text-foreground/50 hover:text-primary transition-colors group whitespace-nowrap"
+                className="relative text-[10px] font-bold uppercase tracking-[0.4em] text-foreground/50 hover:text-primary transition-colors group whitespace-nowrap flex flex-col items-center"
               >
-                {link.name}
+                <span className="mr-[-0.4em]">{link.name}</span>
                 <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
               </Link>
             ))}

@@ -15,6 +15,7 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://coromandel-productions.com"),
   title: "Coromandel Productions | Sports & Corporate Video Production | Singapore. Chennai. Worldwide.",
   description:
     "Award-winning cinematic production studio founded in 2016. We craft sports films, corporate documentaries and social impact stories for global brands — trusted by ICC, Infosys and the World Bank. Based in Singapore. Chennai. Worldwide. Booking Q4 2026.",
@@ -51,10 +52,10 @@ export const metadata: Metadata = {
   },
 };
 
-
 import { ThemeProvider } from "@/components/ThemeProvider";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Analytics } from "@vercel/analytics/react";
+import JsonLd from "@/components/JsonLd";
 
 export default function RootLayout({
   children,
@@ -66,6 +67,9 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${jost.variable} h-full antialiased transition-colors duration-500`}
     >
+      <head>
+        <JsonLd />
+      </head>
       <body className={`${jost.className} min-h-full flex flex-col bg-background text-foreground transition-colors duration-500`}>
         <ThemeProvider>
           <SmoothScroll>{children}</SmoothScroll>

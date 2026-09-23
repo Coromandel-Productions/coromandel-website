@@ -1,4 +1,10 @@
 import LegalLayout from "@/components/LegalLayout";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Health & Safety | Coromandel Productions",
+  description: "Our commitment to Health & Safety at Coromandel Productions across Singapore and Chennai.",
+};
 
 export default function HealthSafetyPage() {
   return (

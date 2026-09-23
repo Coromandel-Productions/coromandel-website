@@ -35,6 +35,19 @@
     0% { background-position: -200% center; }
     100% { background-position: 200% center; }
   }
+
+  --animate-tubelight: tubelight-flicker 1.2s ease-out forwards;
+
+  @keyframes tubelight-flicker {
+    0% { opacity: 0.4; text-shadow: none; color: rgba(241, 111, 36, 0.4); }
+    15% { opacity: 1; text-shadow: 0 0 10px rgba(241, 111, 36, 0.8); color: var(--color-primary); }
+    20% { opacity: 0.4; text-shadow: none; color: rgba(241, 111, 36, 0.4); }
+    35% { opacity: 1; text-shadow: 0 0 15px rgba(241, 111, 36, 0.8); color: var(--color-primary); }
+    40% { opacity: 0.5; text-shadow: none; color: rgba(241, 111, 36, 0.5); }
+    60% { opacity: 1; text-shadow: 0 0 20px rgba(241, 111, 36, 0.9); color: var(--color-primary); }
+    65% { opacity: 0.7; text-shadow: 0 0 5px rgba(241, 111, 36, 0.4); color: var(--color-primary); }
+    100% { opacity: 1; text-shadow: 0 0 15px rgba(241, 111, 36, 0.8); color: var(--color-primary); }
+  }
 }
 
 
