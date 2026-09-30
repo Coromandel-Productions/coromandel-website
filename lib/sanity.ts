@@ -36,7 +36,20 @@ export const clientsQuery = `*[_type == "clientBrand"] | order(_createdAt asc) {
   location
 }`;
 
+export const locationsQuery = `*[_type == "location"] | order(name asc) {
+  _id,
+  name,
+  country,
+  longitude,
+  latitude,
+  role,
+  detail,
+  isHQ
+}`;
+
 export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
+  heroTitle,
+  heroSubtitle,
   studioBio,
   contactEmail,
   address,

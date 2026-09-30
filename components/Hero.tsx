@@ -10,6 +10,8 @@ export default function Hero() {
   const [isHovered, setIsHovered] = useState(false);
   const [videoUrl, setVideoUrl] = useState("/Coromandel%20x%20Lune/04_Showreels/showreel_final.mp4");
   const [bio, setBio] = useState("Global video production studio since 2016. Meaningful storytelling for Sport, Social Impact, Brands & Corporates.");
+  const [title, setTitle] = useState("STORIES UNBOUND");
+  const [subtitle, setSubtitle] = useState("Singapore. Chennai. Worldwide.");
 
   useEffect(() => {
     client.fetch(siteSettingsQuery).then((data) => {
@@ -18,6 +20,12 @@ export default function Hero() {
       }
       if (data?.studioBio) {
         setBio(data.studioBio);
+      }
+      if (data?.heroTitle) {
+        setTitle(data.heroTitle);
+      }
+      if (data?.heroSubtitle) {
+        setSubtitle(data.heroSubtitle);
       }
     }).catch(console.error);
   }, []);
@@ -76,13 +84,13 @@ export default function Hero() {
               <div className="inline-flex items-center gap-3 mb-6 md:mb-10 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-primary uppercase tracking-[0.4em] text-[10px] font-bold py-1">
-                  Singapore. Chennai. Worldwide.
+                  {subtitle}
                 </span>
               </div>
 
               <h1 className="font-serif text-[3.5rem] sm:text-7xl md:text-[9rem] lg:text-[13rem] font-normal leading-[0.85] text-white mb-6 md:mb-12 tracking-tighter mix-blend-difference">
                 <div className="flex flex-wrap justify-center lg:justify-start overflow-hidden py-4">
-                  {"STORIES".split("").map((char, i) => (
+                  {title.split(" ")[0]?.split("").map((char, i) => (
                     <motion.span
                       key={i}
                       initial={{ y: "100%", opacity: 0, filter: "blur(20px)" }}
@@ -104,7 +112,7 @@ export default function Hero() {
                   transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
                   className="italic font-light text-accent flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 bg-gradient-to-r from-accent via-white to-accent bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent"
                 >
-                  UNBOUND
+                  {title.split(" ").slice(1).join(" ")}
                 </motion.span>
               </h1>
 

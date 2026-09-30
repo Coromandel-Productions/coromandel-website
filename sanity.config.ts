@@ -5,6 +5,7 @@ import { projectSchema } from "./schemas/project";
 import { clientBrandSchema } from "./schemas/clientBrand";
 import { siteSettingsSchema } from "./schemas/siteSettings";
 import { behindTheLensSchema } from "./schemas/behindTheLens";
+import { locationSchema } from "./schemas/location";
 
 export default defineConfig({
   name: "coromandel",
@@ -25,6 +26,9 @@ export default defineConfig({
               .title("Client Brands")
               .child(S.documentTypeList("clientBrand").title("Clients")),
             S.listItem()
+              .title("Locations & Hubs")
+              .child(S.documentTypeList("location").title("Locations")),
+            S.listItem()
               .title("Site Settings")
               .child(S.document().schemaType("siteSettings").documentId("siteSettings")),
             S.listItem()
@@ -35,6 +39,6 @@ export default defineConfig({
     visionTool(),
   ],
   schema: {
-    types: [projectSchema, clientBrandSchema, siteSettingsSchema, behindTheLensSchema],
+    types: [projectSchema, clientBrandSchema, siteSettingsSchema, behindTheLensSchema, locationSchema],
   },
 });

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ComposableMap, Geographies, Geography, Marker, Line } from "react-simple-maps";
 import { MapPin } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
+import { client, locationsQuery } from "@/lib/sanity";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -96,21 +97,46 @@ const productionLocations: Location[] = [
   { id: "philippines", name: "Philippines", country: "PH", coordinates: [121.7740, 12.8797], role: "Production", detail: "Production Location" },
 ];
 
-// Connection lines from Singapore HQ to all other hubs
-const connections = hubs
-  .filter((l) => l.id !== "singapore")
-  .map((l) => ({
-    from: [103.8198, 1.3521] as [number, number],
-    to: l.coordinates,
-    targetId: l.id,
-  }));
-
 export default function GlobalMap() {
   const [activeLocation, setActiveLocation] = useState<Location | null>(null);
   const [viewMode, setViewMode] = useState<"hubs" | "locations">("hubs");
+  const [sanityLocations, setSanityLocations] = useState<Location[]>([]);
   const { theme } = useTheme();
 
-  const locations = viewMode === "hubs" ? hubs : productionLocations;
+  useEffect(() => {
+    client.fetch(locationsQuery)
+      .then(data => {
+        if (data && data.length > 0) {
+          const formatted = data.map((d: any) => ({
+            id: d._id,
+            name: d.name,
+            country: d.country,
+            coordinates: [d.longitude, d.latitude],
+            role: d.role,
+            detail: d.detail,
+            isHQ: d.isHQ
+          }));
+          setSanityLocations(formatted);
+        }
+      })
+      .catch(console.error);
+  }, []);
+
+  const activeHubs = sanityLocations.some(l => l.isHQ) ? sanityLocations.filter(l => l.isHQ) : hubs;
+  const activeProductionLocations = sanityLocations.some(l => !l.isHQ) ? sanityLocations.filter(l => !l.isHQ) : productionLocations;
+
+  const locations = viewMode === "hubs" ? activeHubs : activeProductionLocations;
+
+  const sgHub = activeHubs.find(h => h.name.toLowerCase() === "singapore" || h.country === "SG");
+  const sgCoords = sgHub ? sgHub.coordinates : [103.8198, 1.3521];
+
+  const dynamicConnections = activeHubs
+    .filter((l) => l.id !== (sgHub ? sgHub.id : "singapore"))
+    .map((l) => ({
+      from: sgCoords as [number, number],
+      to: l.coordinates,
+      targetId: l.id,
+    }));
 
   const isDark = theme === "dark";
   const mapFill = isDark ? "rgba(241,111,36,0.25)" : "rgba(241,111,36,0.35)";
@@ -200,7 +226,7 @@ export default function GlobalMap() {
             </Geographies>
 
             {/* Animated connection lines (Hubs only) */}
-            {viewMode === "hubs" && connections.map((conn, i) => (
+            {viewMode === "hubs" && dynamicConnections.map((conn, i) => (
               <Line
                 key={i}
                 from={conn.from}
