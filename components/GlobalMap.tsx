@@ -29,19 +29,19 @@ const hubs: Location[] = [
     isHQ: true,
   },
   {
-    id: "chennai",
+    id: "india",
     name: "India",
     country: "IN",
-    coordinates: [80.2707, 13.0827],
+    coordinates: [80.2707, 13.0827], // Chennai coordinates roughly, but named India
     role: "India Studio",
     detail: "South Asia production & post-production operations.",
     isHQ: true,
   },
   {
-    id: "london",
+    id: "uk",
     name: "United Kingdom",
     country: "UK",
-    coordinates: [-0.1276, 51.5074],
+    coordinates: [-0.1276, 51.5074], // London coordinates
     role: "Barn Media UK — Co-Owners",
     detail: "European content strategy & co-production partner.",
     isHQ: true,
@@ -93,6 +93,7 @@ const productionLocations: Location[] = [
   { id: "denmark", name: "Denmark", country: "DK", coordinates: [9.5018, 56.2639], role: "Production", detail: "Production Location" },
   { id: "new-zealand", name: "New Zealand", country: "NZ", coordinates: [174.7633, -36.8485], role: "Production", detail: "Filming location & regional production partner." },
   { id: "uae", name: "UAE", country: "AE", coordinates: [55.2708, 25.2048], role: "Production", detail: "MENA region production & client access." },
+  { id: "philippines", name: "Philippines", country: "PH", coordinates: [121.7740, 12.8797], role: "Production", detail: "Production Location" },
 ];
 
 // Connection lines from Singapore HQ to all other hubs

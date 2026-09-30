@@ -68,3 +68,6 @@ public/Coromandel x Lune/04_Showreels/Video Thumbnails/*
 
 # temporary browser data
 .chrome_temp/
+
+# temp backup
+temp_backup/
