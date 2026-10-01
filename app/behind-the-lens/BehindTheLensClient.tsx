@@ -69,7 +69,7 @@ export default function BehindTheLensClient() {
     <main className="bg-background min-h-screen">
       <Navbar />
       {/* Hero Section */}
-      <section className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100dvh] h-auto w-full flex items-center justify-center overflow-hidden pt-32 pb-20">
         <motion.div style={{ y: yBg }} className="absolute inset-0 z-0">
           <Image
             src={data?.heroImage ? urlFor(data.heroImage).url() : "/Coromandel x Lune/07_BTS_Images/PHOTO-2022-04-19-19-29-54.jpg"}

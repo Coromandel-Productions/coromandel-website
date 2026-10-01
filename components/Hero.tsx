@@ -43,8 +43,8 @@ export default function Hero() {
   const smoothVideoScale = useSpring(videoScale, { stiffness: 60, damping: 25 });
 
   return (
-    <section ref={containerRef} id="hero" className="relative h-[100dvh] bg-background">
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
+    <section ref={containerRef} id="hero" className="relative min-h-[100dvh] bg-background">
+      <div className="sticky top-0 min-h-[100dvh] h-full w-full overflow-hidden">
         {/* Dynamic Background Wrapper */}
         <motion.div 
           style={{ scale: smoothVideoScale }}
@@ -77,9 +77,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, delay: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="container mx-auto px-6 relative z-20 h-full flex flex-col justify-center pt-20"
+          className="container mx-auto px-6 relative z-20 h-full min-h-[100dvh] flex flex-col justify-center pt-32 pb-20"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-[12vh] lg:mt-[10vh]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-8 lg:mt-12">
             <div className="lg:col-span-12 text-center lg:text-left">
               <div className="inline-flex items-center gap-3 mb-6 md:mb-10 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />

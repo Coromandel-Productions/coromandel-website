@@ -126,9 +126,8 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => router.push(service.href)}
-      className="relative w-full md:min-w-[80vw] min-h-[420px] md:h-[70vh] bg-black rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden group cursor-pointer flex flex-col md:flex-row shadow-2xl"
+      className="relative w-full md:min-w-[80vw] min-h-[420px] md:min-h-[70vh] h-auto bg-black rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden group cursor-pointer flex flex-col md:flex-row shadow-2xl"
     >
-      {/* Background Image/Video Parallax */}
       <div className="absolute inset-0 z-0">
         {service.video ? (
             <motion.video

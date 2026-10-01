@@ -38,11 +38,11 @@ export default function Capabilities() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
           
           {/* Header Column */}
-          <div className="lg:col-span-4 flex flex-col justify-start">
+          <div className="lg:col-span-5 flex flex-col justify-start">
             <span className="text-[10px] uppercase tracking-[0.5em] text-primary font-bold mb-4 md:mb-6 block">
               Our Capabilities
             </span>
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-foreground tracking-tighter leading-tight mb-6 md:mb-8">
+            <h2 className="font-serif text-[clamp(3.5rem,5vw,5.5rem)] text-foreground tracking-tighter leading-tight mb-6 md:mb-8 break-words min-w-0">
               CRAFTING <br />
               <span className="italic text-muted">THE VISION.</span>
             </h2>
@@ -52,7 +52,7 @@ export default function Capabilities() {
           </div>
 
           {/* Accordion Column */}
-          <div className="lg:col-span-8 flex flex-col w-full border-t border-white/10 mt-8 lg:mt-0">
+          <div className="lg:col-span-7 flex flex-col w-full border-t border-white/10 mt-8 lg:mt-0">
             {capabilities.map((cap, idx) => {
               const isExpanded = expandedIndex === idx;
 
