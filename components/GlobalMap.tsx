@@ -178,7 +178,7 @@ export default function GlobalMap() {
               <button
                 key={tab.id}
                 onClick={() => { setViewMode(tab.id as "hubs" | "locations"); setActiveLocation(null); }}
-                className={`relative px-8 py-3 rounded-full text-sm font-medium tracking-wide transition-colors z-10 ${
+                className={`relative px-6 md:px-8 py-3 rounded-full text-xs md:text-sm whitespace-nowrap font-medium tracking-wide transition-colors z-10 flex-shrink-0 ${
                   viewMode === tab.id 
                     ? "text-white" 
                     : "text-muted hover:text-foreground"

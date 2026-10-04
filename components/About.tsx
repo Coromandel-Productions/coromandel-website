@@ -12,7 +12,7 @@ const images = [
     src: `${BTS_BASE}/Core Team Photos/core-team-homepage-2.jpg`,
     label: "The Core Team",
     aspect: "landscape",
-    caption: "Singapore. Chennai. Worldwide.",
+    caption: "Singapore. Chennai. UK. Worldwide.",
   },
   {
     src: `${BTS_BASE}/bts-4.jpg`,
@@ -157,7 +157,7 @@ export default function About() {
                     className={`flex flex-col items-center justify-center px-2 py-6 md:px-6 md:py-5 border border-border rounded-2xl bg-surface-2 text-center ${stat.span}`}
                   >
                     <p className="font-serif text-3xl md:text-4xl text-primary tracking-tighter leading-none mb-2">{stat.value}</p>
-                    <p className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-[0.4em] text-muted font-bold w-full truncate px-1">{stat.label}</p>
+                    <p className="text-[8px] md:text-[9px] uppercase tracking-[0.1em] md:tracking-[0.3em] text-muted font-bold w-full px-1 whitespace-nowrap">{stat.label}</p>
                   </div>
                 ))}
               </motion.div>

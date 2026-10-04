@@ -57,21 +57,21 @@ export default function Capabilities() {
               const isExpanded = expandedIndex === idx;
 
               return (
-                <div key={cap.id} className="border-b border-white/10 overflow-hidden group">
+                <div key={cap.id} className="border-b border-border overflow-hidden group">
                   <button
                     onClick={() => toggleAccordion(idx)}
-                    className="w-full py-6 md:py-12 flex items-center justify-between outline-none focus-visible:ring-2 focus-visible:ring-primary/50 text-left transition-colors hover:bg-white/[0.02]"
+                    className="w-full py-6 md:py-12 flex items-center justify-between outline-none focus-visible:ring-2 focus-visible:ring-primary/50 text-left transition-colors hover:bg-foreground/[0.02]"
                   >
                     <div className="flex items-center gap-4 md:gap-12 w-full">
                       <span className={`text-xs md:text-sm font-mono tracking-widest transition-colors ${isExpanded ? "text-primary" : "text-muted group-hover:text-foreground/50"}`}>
                         {cap.id}
                       </span>
-                      <h3 className={`font-serif text-3xl md:text-5xl lg:text-6xl tracking-tighter transition-colors duration-500 ${isExpanded ? "text-white" : "text-foreground/60 group-hover:text-white"}`}>
+                      <h3 className={`font-serif text-3xl md:text-5xl lg:text-6xl tracking-tighter transition-colors duration-500 ${isExpanded ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}>
                         {cap.title}
                       </h3>
                     </div>
                     
-                    <div className={`relative flex items-center justify-center w-10 h-10 md:w-14 md:h-14 rounded-full border transition-colors duration-500 flex-shrink-0 ml-4 ${isExpanded ? "border-primary bg-primary/10 text-primary" : "border-white/10 text-muted group-hover:border-white/30 group-hover:text-white"}`}>
+                    <div className={`relative flex items-center justify-center w-10 h-10 md:w-14 md:h-14 rounded-full border transition-colors duration-500 flex-shrink-0 ml-4 ${isExpanded ? "border-primary bg-primary/10 text-primary" : "border-border text-muted group-hover:border-foreground/30 group-hover:text-foreground"}`}>
                       <motion.div
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
