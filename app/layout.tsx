@@ -16,9 +16,9 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://coromandel-productions.com"),
-  title: "Coromandel Productions | Sports & Corporate Video Production | Singapore. Chennai. UK. Worldwide.",
+  title: "Coromandel Productions | Sports & Corporate Video Production | Singapore. India. UK. Worldwide.",
   description:
-    "Award-winning cinematic production studio founded in 2016. We craft sports films, corporate documentaries and social impact stories for global brands — trusted by ICC, Infosys and the World Bank. Based in Singapore. Chennai. UK. Worldwide. Booking Q4 2026.",
+    "Award-winning cinematic production studio founded in 2016. We craft sports films, corporate documentaries and social impact stories for global brands — trusted by ICC, Infosys and the World Bank. Based in Singapore. India. UK. Worldwide. Booking Q4 2026.",
   keywords: [
     "video production company Chennai",
     "video production company Singapore",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Coromandel Productions — Stories Unbound",
     description:
-      "Sports films. Corporate docs. Social impact stories. Trusted by ICC, Infosys & World Bank. Based in Singapore. Chennai. UK. Worldwide. Booking Q3 2026.",
+      "Sports films. Corporate docs. Social impact stories. Trusted by ICC, Infosys & World Bank. Based in Singapore. India. UK. Worldwide. Booking Q3 2026.",
     images: ["/preview-link-image.jpeg"],
   },
 };

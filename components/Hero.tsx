@@ -11,7 +11,7 @@ export default function Hero() {
   const [videoUrl, setVideoUrl] = useState("/Coromandel%20x%20Lune/04_Showreels/showreel_final.mp4");
   const [bio, setBio] = useState("Global video production studio since 2016. Meaningful storytelling for Sport, Social Impact, Brands & Corporates.");
   const [title, setTitle] = useState("STORIES UNBOUND");
-  const [subtitle, setSubtitle] = useState("Singapore. Chennai. UK. Worldwide.");
+  const [subtitle, setSubtitle] = useState("Singapore. India. UK. Worldwide.");
 
   useEffect(() => {
     client.fetch(siteSettingsQuery).then((data) => {

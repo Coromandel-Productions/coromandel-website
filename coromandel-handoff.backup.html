@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coromandel Productions — The Final Frame</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400;500&family=Jost:wght@200;300;400;500&display=swap"
+    rel="stylesheet">
+  
+  <style>
+    /* ─────────────────────────────────────────────────────────────────
+       VARIABLES & FOUNDATION
+    ───────────────────────────────────────────────────────────────── */
+    :root {
+      --bg: #080808; /* slightly warm near-black */
+      --bg-surface: rgba(201, 169, 110, 0.025);
+      --bg-surface-hover: rgba(201, 169, 110, 0.06);
+      --fg: #f7f4ef;
+      --muted: rgba(247, 244, 239, 0.4);
+      --border: rgba(201, 169, 110, 0.14);
+      --border-strong: rgba(201, 169, 110, 0.35);
+      --gold: #c9a96e;
+      
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-serif-sc: 'Cormorant SC', serif;
+      --font-sans: 'Jost', sans-serif;
+      
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+      --space-xxl: 12rem;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Subtle texture via pseudo-element */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    ::selection {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       TYPOGRAPHY
+    ───────────────────────────────────────────────────────────────── */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 300;
+      line-height: 1.1;
+    }
+    
+    .font-serif { font-family: var(--font-serif); }
+    .font-sans { font-family: var(--font-sans); }
+
+    .text-muted { color: var(--muted); }
+    .text-gold { color: var(--gold); }
+
+    .micro-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    .section-number {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.4s ease;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       LAYOUT & COMPONENTS
+    ───────────────────────────────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .container-narrow {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-spacing {
+      padding: var(--space-xl) 0;
+    }
+
+    .rule-top { border-top: 1px solid var(--border); }
+    .rule-bottom { border-bottom: 1px solid var(--border); }
+
+    .grid-half {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+    
+    .grid-thirds {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+    
+    .grid-asymmetric {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: var(--space-lg);
+    }
+
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--fg);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      transition: gap 0.4s ease, border-color 0.4s ease;
+    }
+
+    .action-link:hover {
+      gap: 1.25rem;
+      border-color: var(--fg);
+    }
+    
+    .action-link.accent:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .image-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    
+    .image-placeholder.portrait {
+      aspect-ratio: 3/4;
+    }
+
+    .matrix-row {
+      display: grid;
+      grid-template-columns: 2fr 3fr 2fr 2fr;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    
+    .matrix-header {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-strong);
+    }
+    
+    .matrix-row:last-child {
+      border-bottom: none;
+    }
+    
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .status-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+    
+    .status-dot.active {
+      background: var(--fg);
+      box-shadow: 0 0 8px rgba(234, 234, 234, 0.4);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: rgba(9, 9, 8, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    header.hidden {
+      transform: translateY(-100%);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .nav-links a.active, .nav-links a:hover {
+      color: var(--fg);
+    }
+
+    .print-trigger {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      transition: color 0.4s ease;
+    }
+    
+    .print-trigger:hover {
+      color: var(--fg);
+    }
+    
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--fg);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    
+    .menu-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-up.visible, .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up, .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       SECTION SPECIFICS
+    ───────────────────────────────────────────────────────────────── */
+    .hero-section {
+      padding-top: 14rem;
+      padding-bottom: 8rem;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 7rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 2rem;
+      max-width: 14ch;
+    }
+
+    .timeline {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+    
+    .timeline span.active {
+      color: var(--fg);
+    }
+    
+    .timeline-arrow {
+      color: var(--border-strong);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       MOBILE RESPONSIVE
+    ───────────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .grid-half, .grid-thirds, .grid-asymmetric {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      
+      .matrix-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1.5rem 0;
+        position: relative;
+      }
+      
+      .matrix-header {
+        display: none;
+      }
+      
+      .matrix-row > div::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin-bottom: 0.25rem;
+        margin-top: 0.75rem;
+      }
+      
+      .matrix-row > div:first-child::before {
+        margin-top: 0;
+      }
+
+      .nav-links, .print-trigger {
+        display: none;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .mobile-menu {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100vh;
+        background: var(--bg);
+        z-index: 99;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+      }
+      
+      .mobile-menu.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      
+      .mobile-menu a {
+        font-size: 1.5rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      
+      .hero-section {
+        padding-top: 8rem;
+      }
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       PRINT / PDF (CRITICAL)
+    ───────────────────────────────────────────────────────────────── */
+    @media print {
+      @page {
+        margin: 2cm;
+        size: A4 portrait;
+      }
+
+      body {
+        background: white !important;
+        color: black !important;
+        font-size: 10pt;
+      }
+      
+      body::before {
+        display: none !important;
+      }
+
+      header, .action-link, .print-trigger, .menu-toggle, .mobile-menu {
+        display: none !important;
+      }
+
+      .container, .container-narrow {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      section {
+        padding: 2rem 0 !important;
+        page-break-inside: avoid;
+        border-top: 1px solid #eee;
+      }
+
+      .hero-section {
+        padding-top: 0 !important;
+        padding-bottom: 4rem !important;
+        border-top: none;
+        min-height: auto;
+      }
+
+      h1, h2, h3, h4 { color: black !important; }
+      .text-muted, .micro-label, .section-number { color: #555 !important; }
+      .text-gold { color: #333 !important; }
+
+      .rule-top { border-top: 1px solid #ddd !important; }
+      .rule-bottom { border-bottom: 1px solid #ddd !important; }
+      .matrix-row { border-bottom: 1px solid #eee !important; page-break-inside: avoid; }
+      
+      .image-placeholder {
+        background: #f9f9f9 !important;
+        border: 1px solid #ccc !important;
+        color: #333 !important;
+      }
+      
+      .status-dot { background: #888 !important; }
+      .status-dot.active { background: #000 !important; box-shadow: none !important; }
+
+      .fade-up, .fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      
+      a { text-decoration: none !important; color: inherit !important; }
+      
+      /* Avoid orphans/widows */
+      h2, h3 { page-break-after: avoid; }
+      p { widows: 3; orphans: 3; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="site-header">
+    <div class="container nav-inner">
+      <div class="nav-brand">Lune Studio</div>
+      
+      <nav class="nav-links" id="desktop-nav">
+        <a href="#work">01 / The Work</a>
+        <a href="#system">02 / The System</a>
+        <a href="#crew">03 / The Crew</a>
+        <a href="#edit">04 / The Edit</a>
+        <a href="#final">05 / Final Cut</a>
+      </nav>
+
+      <div style="display: flex; gap: 1.5rem; align-items: center;">
+        <button class="print-trigger" onclick="window.print()">Save PDF</button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#work" class="mobile-link">01 / The Work</a>
+    <a href="#system" class="mobile-link">02 / The System</a>
+    <a href="#crew" class="mobile-link">03 / The Crew</a>
+    <a href="#edit" class="mobile-link">04 / The Edit</a>
+    <a href="#final" class="mobile-link">05 / Final Cut</a>
+    <a href="#next" class="mobile-link">06 / Next Frame</a>
+    <a href="#credits" class="mobile-link">07 / After The Credits</a>
+    <button class="mobile-link" style="background:none;border:none;text-align:left;color:var(--muted);font-family:var(--font-sans);cursor:pointer;border-bottom:1px solid var(--border);" onclick="window.print()">Save PDF</button>
+  </div>
+
+  <main>
+    <!-- 00 OPENING FRAME -->
+    <section class="container hero-section" id="top">
+      <div class="fade-up">
+        <div class="micro-label" style="margin-bottom: 2rem;">00 / Opening Frame</div>
+        <h1 class="hero-title font-sans">The Final Frame</h1>
+        <p class="font-serif" style="font-size: 1.5rem; font-style: italic; color: var(--muted); max-width: 600px;">
+          The new digital home is live. This document contains everything behind it — what was built, where it lives, who owns it, and how to carry it forward.
+        </p>
+      </div>
+      
+      <div class="grid-half rule-top fade-in delay-2" style="padding-top: 2rem; margin-top: 4rem;">
+        <div>
+          <div class="micro-label">Project</div>
+          <div style="font-size: 1.1rem; margin-top: 0.5rem;">Coromandel Productions</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+          <div>
+            <div class="micro-label">Studio</div>
+            <div style="font-size: 1.1rem; margin-top: 0.5rem;">Lune Studio</div>
+          </div>
+          <div>
+            <div class="micro-label">Status</div>
+            <div class="status-indicator" style="margin-top: 0.5rem; font-size: 1.1rem; text-transform: none; letter-spacing: 0;">
+              <span class="status-dot active"></span> Live
+            </div>
+          </div>
+          <div>
+            <div class="micro-label">Date</div>
+            <div style="font-size: 1.1rem; margin-top: 0.5rem;">October 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 THE WORK -->
+    <section class="section-spacing rule-top" id="work">
+      <div class="container">
+        <div class="micro-label" style="margin-bottom: 4rem;">01 / The Work</div>
+        
+        <div class="grid-asymmetric fade-up">
+          <div>
+            <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 1.5rem;">A completed creative system.</h2>
+            <p class="text-muted">The project represents a comprehensive translation of the Coromandel visual language into a high-performance digital environment. From cinematic art direction to responsive architecture, every layer was designed to support the work.</p>
+            
+            <div class="timeline fade-in delay-2">
+              <span>DISCOVERY</span>
+              <span class="timeline-arrow">→</span>
+              <span>CREATIVE DIRECTION</span>
+              <span class="timeline-arrow">→</span>
+              <span>DESIGN</span>
+              <span class="timeline-arrow">→</span>
+              <span>DEVELOPMENT</span>
+              <span class="timeline-arrow">→</span>
+              <span>CONTENT</span>
+              <span class="timeline-arrow">→</span>
+              <span>QA</span>
+              <span class="timeline-arrow">→</span>
+              <span class="active">LAUNCH</span>
+            </div>
+          </div>
+          
+          <div class="grid-half">
+            <div>
+              <div class="micro-label" style="margin-bottom: 1rem; color: var(--fg);">Design</div>
+              <ul style="list-style: none; font-size: 0.85rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.5rem;">
+                <li>Custom visual direction</li>
+                <li>Responsive architecture</li>
+                <li>Cinematic showreel integration</li>
+                <li>Page layouts & typography system</li>
+              </ul>
+            </div>
+            <div>
+              <div class="micro-label" style="margin-bottom: 1rem; color: var(--fg);">Engineering</div>
+              <ul style="list-style: none; font-size: 0.85rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.5rem;">
+                <li>Sanity CMS implementation</li>
+                <li>Performance optimisation</li>
+                <li>SEO foundations</li>
+                <li>Calendly integration</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up delay-2" style="margin-top: 6rem;">
+          <div class="image-placeholder" style="margin-bottom: 2rem;">
+            [Insert Hero / Homepage Visual]
+          </div>
+          <div class="grid-half">
+            <div class="image-placeholder portrait">
+              [Insert Mobile Experience Visual]
+            </div>
+            <div class="image-placeholder portrait">
+              [Insert Interior Page Visual]
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 THE SYSTEM -->
+    <section class="section-spacing rule-top" id="system">
+      <div class="container">
+        <div class="micro-label" style="margin-bottom: 4rem;">02 / The System</div>
+        
+        <div class="grid-asymmetric fade-up">
+          <div>
+            <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 1.5rem;">The Architecture</h2>
+            <p class="text-muted">The website is built on a modern, decoupled stack. The visual experience is separated from the content database, resulting in a fast, secure, and resilient platform.</p>
+          </div>
+          
+          <div style="font-family: monospace; font-size: 0.8rem; line-height: 2; color: var(--muted); background: var(--bg-surface); padding: 2rem; border: 1px solid var(--border);">
+            CONTENT     — Sanity CMS<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+            APPLICATION — Next.js<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+            REPOSITORY  — GitHub<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+            DEPLOYMENT  — Vercel<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+            DOMAIN      — GoDaddy<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+            <span style="color: var(--fg);">AUDIENCE    — coromandelproductions.com</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 THE CREW -->
+    <section class="section-spacing rule-top" id="crew">
+      <div class="container">
+        <div class="micro-label" style="margin-bottom: 4rem;">03 / The Crew</div>
+        
+        <div class="fade-up">
+          <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Ownership Matrix</h2>
+          <p class="text-muted" style="max-width: 600px; margin-bottom: 3rem;">Coromandel retains full ownership of all underlying accounts, subscriptions, and domains. Lune operates with technical access. Credentials and authentication details are intentionally excluded from this document.</p>
+          
+          <div class="matrix-table">
+            <div class="matrix-row matrix-header micro-label">
+              <div>System</div>
+              <div>Purpose</div>
+              <div>Owner</div>
+              <div>Access</div>
+            </div>
+            
+            <div class="matrix-row">
+              <div data-label="System" style="color: var(--fg);">GitHub</div>
+              <div data-label="Purpose" class="text-muted" style="font-size: 0.9rem;">Source code repository</div>
+              <div data-label="Owner" style="font-size: 0.85rem;">Coromandel</div>
+              <div data-label="Access"><a href="[INSERT URL]" target="_blank" class="action-link">Open ↗</a></div>
+            </div>
+            
+            <div class="matrix-row">
+              <div data-label="System" style="color: var(--fg);">Vercel</div>
+              <div data-label="Purpose" class="text-muted" style="font-size: 0.9rem;">Production hosting</div>
+              <div data-label="Owner" style="font-size: 0.85rem;">Coromandel</div>
+              <div data-label="Access"><a href="[INSERT URL]" target="_blank" class="action-link">Open ↗</a></div>
+            </div>
+            
+            <div class="matrix-row">
+              <div data-label="System" style="color: var(--fg);">Sanity</div>
+              <div data-label="Purpose" class="text-muted" style="font-size: 0.9rem;">Content database (CMS)</div>
+              <div data-label="Owner" style="font-size: 0.85rem;">Coromandel</div>
+              <div data-label="Access"><a href="[INSERT URL]" target="_blank" class="action-link">Open ↗</a></div>
+            </div>
+            
+            <div class="matrix-row">
+              <div data-label="System" style="color: var(--fg);">GoDaddy</div>
+              <div data-label="Purpose" class="text-muted" style="font-size: 0.9rem;">Domain management</div>
+              <div data-label="Owner" style="font-size: 0.85rem;">Coromandel</div>
+              <div data-label="Access"><a href="[INSERT URL]" target="_blank" class="action-link">Open ↗</a></div>
+            </div>
+            
+            <div class="matrix-row">
+              <div data-label="System" style="color: var(--fg);">Google Workspace</div>
+              <div data-label="Purpose" class="text-muted" style="font-size: 0.9rem;">Email & organisation</div>
+              <div data-label="Owner" style="font-size: 0.85rem;">Coromandel</div>
+              <div data-label="Access"><a href="[INSERT URL]" target="_blank" class="action-link">Open ↗</a></div>
+            </div>
+            
+            <div class="matrix-row">
+              <div data-label="System" style="color: var(--fg);">Google Business Profile</div>
+              <div data-label="Purpose" class="text-muted" style="font-size: 0.9rem;">Local business presence</div>
+              <div data-label="Owner" style="font-size: 0.85rem;">Coromandel</div>
+              <div data-label="Access"><a href="[INSERT URL]" target="_blank" class="action-link">Open ↗</a></div>
+            </div>
+            
+            <div class="matrix-row">
+              <div data-label="System" style="color: var(--fg);">Google Analytics</div>
+              <div data-label="Purpose" class="text-muted" style="font-size: 0.9rem;">Website traffic analysis</div>
+              <div data-label="Owner" style="font-size: 0.85rem;">Coromandel</div>
+              <div data-label="Access"><a href="[INSERT URL]" target="_blank" class="action-link">Open ↗</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 THE EDIT -->
+    <section class="section-spacing rule-top" id="edit">
+      <div class="container">
+        <div class="micro-label" style="margin-bottom: 4rem;">04 / The Edit</div>
+        
+        <div class="grid-asymmetric fade-up">
+          <div>
+            <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Content vs. Code</h2>
+            <p class="text-muted" style="margin-bottom: 2rem;">It is important to distinguish between updating information and altering the digital structure.</p>
+            
+            <div style="margin-bottom: 2rem;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--fg);">Content Changes</h4>
+              <p class="text-muted" style="font-size: 0.9rem;">Handled directly by the Coromandel team in Sanity Studio. This includes text, imagery, team members, projects, showreels, and publishing pages.</p>
+            </div>
+            
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--fg);">Development Changes</h4>
+              <p class="text-muted" style="font-size: 0.9rem;">Require code updates and deployment by Lune. This includes new page layouts, interactive functionality, structural design alterations, and third-party integrations.</p>
+            </div>
+            
+            <p class="text-muted" style="font-size: 0.85rem; font-style: italic; margin-top: 3rem;">If you are unsure whether a change requires Sanity or code, contact Lune.</p>
+          </div>
+          
+          <div style="background: var(--bg-surface); border: 1px solid var(--border); padding: 3rem;">
+            <div class="micro-label" style="margin-bottom: 2rem; color: var(--fg);">Mini Sanity Guide</div>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div style="display: flex; gap: 1rem;">
+                <span style="color: var(--muted); font-size: 0.85rem;">01</span>
+                <div>
+                  <div style="font-size: 0.95rem;">Open Sanity Studio</div>
+                  <div style="margin-top: 0.5rem;"><a href="[INSERT URL]" target="_blank" class="action-link accent">Sign In ↗</a></div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 1rem;">
+                <span style="color: var(--muted); font-size: 0.85rem;">02</span>
+                <div style="font-size: 0.95rem;">Select the relevant content type (e.g., Projects) from the left pane.</div>
+              </div>
+              <div style="display: flex; gap: 1rem;">
+                <span style="color: var(--muted); font-size: 0.85rem;">03</span>
+                <div style="font-size: 0.95rem;">Edit the required fields. Changes draft automatically.</div>
+              </div>
+              <div style="display: flex; gap: 1rem;">
+                <span style="color: var(--muted); font-size: 0.85rem;">04</span>
+                <div style="font-size: 0.95rem;">Click 'Publish' to push changes to the live website.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 FINAL CUT -->
+    <section class="section-spacing rule-top" id="final">
+      <div class="container">
+        <div class="micro-label" style="margin-bottom: 4rem;">05 / Final Cut</div>
+        
+        <div class="grid-half fade-up">
+          <div>
+            <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Launch Verification</h2>
+            <p class="text-muted" style="margin-bottom: 3rem;">All critical infrastructure has been verified and is actively running in production.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <span style="font-size: 0.9rem;">Website</span>
+                <span class="status-indicator"><span class="status-dot active"></span> Live</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <span style="font-size: 0.9rem;">Domain</span>
+                <span class="status-indicator"><span class="status-dot active"></span> Connected</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <span style="font-size: 0.9rem;">CMS (Sanity)</span>
+                <span class="status-indicator"><span class="status-dot active"></span> Active</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <span style="font-size: 0.9rem;">Deployment (Vercel)</span>
+                <span class="status-indicator"><span class="status-dot active"></span> Active</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <span style="font-size: 0.9rem;">Analytics</span>
+                <span class="status-indicator"><span class="status-dot active"></span> Connected</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <span style="font-size: 0.9rem;">Google Business Profile</span>
+                <span class="status-indicator"><span class="status-dot active"></span> Configured</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <span style="font-size: 0.9rem;">Responsive QA</span>
+                <span class="status-indicator"><span class="status-dot active"></span> Completed</span>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="micro-label" style="margin-bottom: 1.5rem; color: var(--fg);">Before we call it settled</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; color: var(--muted); font-size: 0.9rem;">
+              <li style="display: flex; gap: 1rem;"><span style="color: var(--fg);">—</span> Review the live site across your internal devices</li>
+              <li style="display: flex; gap: 1rem;"><span style="color: var(--fg);">—</span> Confirm contact and Calendly flows route correctly</li>
+              <li style="display: flex; gap: 1rem;"><span style="color: var(--fg);">—</span> Ensure business information is consistent across platforms</li>
+              <li style="display: flex; gap: 1rem;"><span style="color: var(--fg);">—</span> Distribute the link internally to the team</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 NEXT FRAME -->
+    <section class="section-spacing rule-top" id="next">
+      <div class="container">
+        <div class="micro-label" style="margin-bottom: 4rem;">06 / Next Frame</div>
+        
+        <div class="grid-asymmetric fade-up">
+          <div>
+            <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 1.5rem;">The First 30 Days</h2>
+            <p class="text-muted" style="margin-bottom: 3rem;">A website is a living asset. Here is a sensible rhythm for the weeks immediately following launch.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+              <div>
+                <div class="micro-label" style="margin-bottom: 0.5rem; color: var(--fg);">Week 01 — Settle In</div>
+                <p class="text-muted" style="font-size: 0.9rem;">Circulate the new website internally and to close partners. Ensure everyone is using the correct URLs.</p>
+              </div>
+              <div>
+                <div class="micro-label" style="margin-bottom: 0.5rem; color: var(--fg);">Week 02 — Build Signal</div>
+                <p class="text-muted" style="font-size: 0.9rem;">Update Google Business Profile activity and ensure social links point to the new domain.</p>
+              </div>
+              <div>
+                <div class="micro-label" style="margin-bottom: 0.5rem; color: var(--fg);">Week 03 — Add Proof</div>
+                <p class="text-muted" style="font-size: 0.9rem;">Publish selected recent work and begin collecting new client reviews to support the launch.</p>
+              </div>
+              <div>
+                <div class="micro-label" style="margin-bottom: 0.5rem; color: var(--fg);">Week 04 — Review</div>
+                <p class="text-muted" style="font-size: 0.9rem;">Review early analytics, monitor enquiry behaviour, and identify opportunities for the next iteration.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div style="background: var(--bg-surface); padding: 3rem; border: 1px solid var(--border);">
+            <div class="micro-label" style="margin-bottom: 2rem; color: var(--fg);">Analytics Guidance</div>
+            <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 2rem;">Focus on signal, not noise. Watch these core metrics in Google Analytics:</p>
+            
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.5rem; color: var(--muted); font-size: 0.9rem;">
+              <li><strong style="color: var(--fg); font-weight: 400;">01 Visitors</strong><br>Are people finding the site?</li>
+              <li><strong style="color: var(--fg); font-weight: 400;">02 Top Pages</strong><br>What work is receiving attention?</li>
+              <li><strong style="color: var(--fg); font-weight: 400;">03 Traffic Sources</strong><br>Where are visitors coming from?</li>
+              <li><strong style="color: var(--fg); font-weight: 400;">04 Geography</strong><br>Which markets are showing interest?</li>
+              <li><strong style="color: var(--fg); font-weight: 400;">05 Enquiry Actions</strong><br>Are visitors moving toward contact forms or Calendly?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 AFTER THE CREDITS -->
+    <section class="section-spacing rule-top" id="credits">
+      <div class="container">
+        <div class="micro-label" style="margin-bottom: 4rem;">07 / After The Credits</div>
+        
+        <div class="fade-up text-center" style="max-width: 800px; margin: 0 auto; text-align: center;">
+          <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Optional Ongoing Digital Support</h2>
+          <p class="text-muted" style="margin-bottom: 4rem;">The website is finished. The relationship doesn't have to be. For clients who prefer dedicated ongoing technical and design partnership, Lune provides optional support retainers. Substantial new functionality or project work can always be separately scoped.</p>
+          
+          <div class="grid-thirds" style="text-align: left;">
+            <div style="border: 1px solid var(--border); padding: 2rem;">
+              <div class="micro-label" style="margin-bottom: 0.5rem; color: var(--fg);">Maintain</div>
+              <div style="font-size: 1.1rem; margin-bottom: 1.5rem;">₹18,000 / month</div>
+              <ul style="list-style: none; font-size: 0.8rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.5rem;">
+                <li>Maintenance & CMS updates</li>
+                <li>Minor copy/image changes</li>
+                <li>Bug fixes & uptime oversight</li>
+                <li>Basic SEO & technical support</li>
+              </ul>
+            </div>
+            
+            <div style="border: 1px solid var(--border-strong); background: rgba(255,255,255,0.02); padding: 2rem;">
+              <div class="micro-label" style="margin-bottom: 0.5rem; color: var(--fg);">Build</div>
+              <div style="font-size: 1.1rem; margin-bottom: 1.5rem;">₹44,000 / month</div>
+              <ul style="list-style: none; font-size: 0.8rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.5rem;">
+                <li>Everything in Maintain, plus:</li>
+                <li>New sections & pages</li>
+                <li>UX improvements</li>
+                <li>Conversion refinements</li>
+                <li>SEO/content structure</li>
+              </ul>
+            </div>
+            
+            <div style="border: 1px solid var(--border); padding: 2rem;">
+              <div class="micro-label" style="margin-bottom: 0.5rem; color: var(--fg);">Scale</div>
+              <div style="font-size: 1.1rem; margin-bottom: 1.5rem;">₹80,000 / month</div>
+              <ul style="list-style: none; font-size: 0.8rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.5rem;">
+                <li>Everything in Build, plus:</li>
+                <li>Larger features & campaigns</li>
+                <li>Advanced interactive experiences</li>
+                <li>Ongoing SEO & digital strategy</li>
+                <li>Proactive recommendations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 & 09 ACTIONS -->
+    <section class="section-spacing rule-top">
+      <div class="container grid-half fade-up">
+        
+        <div style="border-right: 1px solid var(--border); padding-right: 4rem;">
+          <div class="micro-label" style="margin-bottom: 2rem;">08 / A Small Favour</div>
+          <p class="text-muted" style="margin-bottom: 2rem;">If the experience of working together has been a good one, a short note about the project would mean a lot to us.</p>
+          <a href="[INSERT URL]" target="_blank" class="action-link">Share a testimonial ↗</a>
+        </div>
+        
+        <div style="padding-left: 2rem;">
+          <div class="micro-label" style="margin-bottom: 2rem;">09 / Pass It On</div>
+          <p class="text-muted" style="margin-bottom: 2rem;">If you know a brand, founder or team that needs the same level of care across design, technology and digital systems, we'd be glad to meet them.</p>
+          <div style="margin-bottom: 1.5rem; font-size: 0.9rem;">hello@lunestudio.in</div>
+          <a href="mailto:hello@lunestudio.in?subject=Introduction" class="action-link">Introduce Us ↗</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CLOSING CREDITS -->
+    <footer class="rule-top" style="padding: var(--space-xxl) 0 var(--space-xl) 0;">
+      <div class="container text-center fade-up" style="text-align: center;">
+        
+        <h2 class="font-serif" style="font-size: clamp(2rem, 5vw, 4rem); letter-spacing: 0.02em; margin-bottom: 4rem;">BUILT TOGETHER.</h2>
+        
+        <div style="display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; text-align: left;">
+          <div>
+            <div class="micro-label" style="margin-bottom: 0.5rem;">Project</div>
+            <div style="font-size: 0.9rem;">Coromandel Productions</div>
+            <div style="font-size: 0.9rem; color: var(--muted);">2026</div>
+          </div>
+          <div>
+            <div class="micro-label" style="margin-bottom: 0.5rem;">Creative Direction</div>
+            <div style="font-size: 0.9rem;">Lune Studio</div>
+          </div>
+          <div>
+            <div class="micro-label" style="margin-bottom: 0.5rem;">Design</div>
+            <div style="font-size: 0.9rem;">Lune Studio</div>
+          </div>
+          <div>
+            <div class="micro-label" style="margin-bottom: 0.5rem;">Engineering</div>
+            <div style="font-size: 0.9rem;">Lune Studio</div>
+          </div>
+          <div>
+            <div class="micro-label" style="margin-bottom: 0.5rem;">Digital Systems</div>
+            <div style="font-size: 0.9rem;">Lune Studio</div>
+          </div>
+        </div>
+        
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Sticky Header
+      const header = document.getElementById('site-header');
+      let lastScroll = 0;
+
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll <= 50) {
+          header.classList.remove('hidden');
+          header.style.background = 'rgba(9, 9, 8, 0.8)';
+          header.style.borderBottomColor = 'var(--border)';
+          return;
+        }
+        
+        if (currentScroll > lastScroll && currentScroll > 200) {
+          // Scrolling down
+          header.classList.add('hidden');
+        } else {
+          // Scrolling up
+          header.classList.remove('hidden');
+          header.style.background = 'rgba(9, 9, 8, 0.95)';
+          header.style.borderBottomColor = 'var(--border-strong)';
+        }
+        
+        lastScroll = currentScroll;
+      }, { passive: true });
+
+      // Active Section Navigation
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (window.pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+          }
+        });
+      }, { passive: true });
+
+      // Mobile Menu
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+      
+      menuToggle.addEventListener('click', () => {
+        const isActive = mobileMenu.classList.contains('active');
+        if (isActive) {
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        } else {
+          mobileMenu.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+      
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

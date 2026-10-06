@@ -6,7 +6,7 @@ export const siteSettingsSchema = defineType({
   type: "document",
   fields: [
     defineField({ name: "heroTitle", title: "Hero Title", type: "string", description: "Default: STORIES UNBOUND" }),
-    defineField({ name: "heroSubtitle", title: "Hero Subtitle", type: "string", description: "Default: Singapore. Chennai. UK. Worldwide." }),
+    defineField({ name: "heroSubtitle", title: "Hero Subtitle", type: "string", description: "Default: Singapore. India. UK. Worldwide." }),
     defineField({ name: "studioBio", title: "Studio Bio", type: "text", rows: 5 }),
     defineField({ name: "contactEmail", title: "Contact Email", type: "string" }),
     defineField({ name: "address", title: "Studio Address", type: "string" }),

@@ -12,7 +12,7 @@ const images = [
     src: `${BTS_BASE}/Core Team Photos/core-team-homepage-2.jpg`,
     label: "The Core Team",
     aspect: "landscape",
-    caption: "Singapore. Chennai. UK. Worldwide.",
+    caption: "Singapore. India. UK. Worldwide.",
   },
   {
     src: `${BTS_BASE}/bts-4.jpg`,

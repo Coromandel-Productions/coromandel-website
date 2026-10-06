@@ -103,7 +103,7 @@ export default function Footer() {
               All Cinematic Rights Reserved.
             </p>
             <div className="flex flex-col md:flex-row items-center gap-4">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-muted decoration-primary underline underline-offset-4">Singapore. Chennai. UK. Worldwide.</span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-muted decoration-primary underline underline-offset-4">Singapore. India. UK. Worldwide.</span>
               <span className="text-[10px] uppercase tracking-[0.3em] text-muted underline underline-offset-4 decoration-primary">Barn Media</span>
             </div>
           </div>
